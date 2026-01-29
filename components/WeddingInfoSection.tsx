@@ -1,0 +1,93 @@
+import { Flower, Heart } from "lucide-react";
+import type { InvitationData } from "../lib/invitation";
+import { Section } from "./Section";
+import { Reveal } from "./Reveal";
+
+type WeddingInfoSectionProps = {
+  data: InvitationData;
+};
+
+export function WeddingInfoSection({ data }: WeddingInfoSectionProps) {
+  return (
+    <Section id="thong-tin" className="relative py-16 lg:py-24 overflow-hidden bg-white">
+      <div className="mx-auto max-w-6xl px-4 relative z-10">
+        {/* Row 1: Parents info horizontally */}
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-12 md:gap-24 mb-20">
+          {/* Nhà trai */}
+          <Reveal x={-20}>
+            <div className="space-y-4 text-center md:text-left border-t border-gold/20 pt-8">
+              <div className="inline-flex items-center gap-2 mb-2">
+                <p className="text-[0.7rem] uppercase tracking-[0.4em] text-burgundy font-bold">Nhà trai</p>
+                <Flower className="w-3 h-3 text-gold/40" />
+              </div>
+              <div className="space-y-1">
+                <p className="text-xl text-ink-dark font-serif font-medium leading-relaxed">{data.groom.parents.father}</p>
+                <p className="text-xl text-ink-dark font-serif font-medium leading-relaxed">{data.groom.parents.mother}</p>
+                <p className="text-xs text-ink/40 uppercase tracking-widest mt-2 italic">Trưởng Nam</p>
+              </div>
+            </div>
+          </Reveal>
+
+          {/* Nhà gái */}
+          <Reveal x={20}>
+            <div className="space-y-4 text-center md:text-right border-t border-gold/20 pt-8">
+              <div className="inline-flex items-center gap-2 mb-2 md:flex-row-reverse">
+                <p className="text-[0.7rem] uppercase tracking-[0.4em] text-burgundy font-bold">Nhà gái</p>
+                <Flower className="w-3 h-3 text-gold/40" />
+              </div>
+              <div className="space-y-1">
+                <p className="text-xl text-ink-dark font-serif font-medium leading-relaxed">{data.bride.parents.father}</p>
+                <p className="text-xl text-ink-dark font-serif font-medium leading-relaxed">{data.bride.parents.mother}</p>
+                <p className="text-xs text-ink/40 uppercase tracking-widest mt-2 italic">Ái Nữ</p>
+              </div>
+            </div>
+          </Reveal>
+        </div>
+
+        {/* Row 2: Visual Centerpiece (Couple + Ceremony) */}
+        <div className="max-w-4xl mx-auto">
+          <Reveal y={30}>
+            <div className="text-center space-y-10 relative">
+              {/* Overlapping Images Style */}
+              <div className="relative h-64 sm:h-80 mb-16 mx-auto w-full max-w-md">
+                <div className="absolute top-0 left-0 w-48 h-64 rounded-2xl overflow-hidden shadow-2xl border-4 border-white -rotate-6 z-0 transition-transform hover:z-20 hover:scale-105 duration-500">
+                  <img src="https://images.unsplash.com/photo-1519741497674-611481863552?auto=format&fit=crop&q=80&w=600" alt="Wedding 1" className="w-full h-full object-cover" />
+                </div>
+                <div className="absolute top-10 right-0 w-48 h-64 rounded-2xl overflow-hidden shadow-2xl border-4 border-white rotate-6 z-10 transition-transform hover:z-20 hover:scale-105 duration-500">
+                  <img src="https://images.unsplash.com/photo-1511285560929-80b456fea0bc?auto=format&fit=crop&q=80&w=600" alt="Wedding 2" className="w-full h-full object-cover" />
+                </div>
+              </div>
+
+              <div className="space-y-6">
+                <h2 className="text-5xl sm:text-7xl font-script text-burgundy font-bold leading-tight">
+                  {data.groom.name} & {data.bride.name}
+                </h2>
+                <div className="gold-divider w-16 mx-auto" />
+              </div>
+
+              <div className="space-y-4">
+                <h3 className="title-primary text-sm sm:text-base text-burgundy/60">Trân trọng báo tin Lễ Thành Hôn</h3>
+                <p className="text-2xl sm:text-3xl font-serif text-ink-dark font-medium italic">{data.ceremony.timeLabel}</p>
+                <div className="space-y-1">
+                  <p className="text-xl text-ink-dark font-serif font-bold tracking-wide">{data.ceremony.solarDateLabel}</p>
+                  <p className="text-sm text-ink/60 font-medium">{data.ceremony.lunarDateLabel}</p>
+                </div>
+              </div>
+
+              <div className="pt-10 border-t border-gold/10 inline-block px-12">
+                <p className="text-[0.6rem] uppercase tracking-[0.4em] text-burgundy font-bold mb-4">Địa điểm</p>
+                <p className="text-2xl text-ink-dark font-serif font-black tracking-tight mb-2">{data.ceremony.venueName}</p>
+                <p className="text-sm text-ink/80 max-w-[300px] mx-auto leading-relaxed">{data.ceremony.address}</p>
+              </div>
+            </div>
+          </Reveal>
+        </div>
+      </div>
+
+      {/* Background Decor icons */}
+      <div className="absolute top-20 right-[-5%] opacity-[0.03] text-burgundy pointer-events-none select-none text-[20rem] font-serif rotate-12">
+        Love
+      </div>
+    </Section>
+  );
+}

@@ -1,0 +1,111 @@
+@import "tailwindcss";
+@config "../tailwind.config.js";
+
+:root {
+  --bg-cream: #FDFBF7;
+  --burgundy: #800020;
+  --gold: #D4AF37;
+  --text-main: #4A4A4A;
+}
+
+html,
+body {
+  padding: 0;
+  margin: 0;
+  scroll-behavior: smooth;
+  background-color: var(--bg-cream);
+}
+
+body {
+  font-family: Inter, ui-sans-serif, system-ui, sans-serif;
+  @apply text-ink antialiased overflow-x-hidden;
+  line-height: 1.6;
+}
+
+/* Luxurious Layered Background */
+.bg-wedding-layer {
+  @apply fixed inset-0 pointer-events-none;
+  background-color: var(--bg-cream);
+  z-index: -1;
+}
+
+/* Red Floral Corners Layer */
+.floral-frame {
+  @apply fixed inset-0 pointer-events-none;
+  background-image: url('/floral-corner.png');
+  background-position: center;
+  background-size: cover;
+  background-repeat: no-repeat;
+  opacity: 0.8;
+  z-index: 40;
+  mix-blend-mode: multiply;
+  /* Blends white background into the cream background */
+}
+
+/* Large Hỷ Watermark - Background Pattern */
+.bg-xi-pattern {
+  @apply fixed inset-0 pointer-events-none;
+  background-image: url('/xi-character.png');
+  background-size: 150px;
+  background-position: center;
+  opacity: 0.1;
+  filter: grayscale(100%) brightness(1.2);
+  z-index: -2;
+  mix-blend-mode: multiply;
+}
+
+/* Global Section Utility */
+.section-padding {
+  @apply px-4 sm:px-8 lg:px-24 py-12 lg:py-16;
+  /* Reduced padding */
+}
+
+/* Container background to hide watermark when overlapped */
+section .container {
+  @apply bg-paper/90 backdrop-blur-[2px] rounded-3xl p-6 sm:p-10;
+}
+
+/* Card Style */
+.content-card {
+  @apply bg-white shadow-card border-gold/10 border rounded-2xl p-6 sm:p-10 transition-all duration-500 hover:shadow-xl;
+}
+
+/* Typography Utilities */
+.handwritten {
+  @apply font-script text-burgundy;
+  line-height: 1.2;
+}
+
+.text-contrast-high {
+  @apply text-ink font-medium leading-relaxed;
+}
+
+.title-primary {
+  @apply font-serif text-burgundy uppercase tracking-[0.2em];
+}
+
+/* Gold Accent Line */
+.gold-divider {
+  @apply h-px w-24 bg-gradient-to-r from-transparent via-gold to-transparent mx-auto my-8;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+::selection {
+  @apply bg-burgundy/10 text-burgundy;
+}
+
+::-webkit-scrollbar {
+  width: 6px;
+}
+
+::-webkit-scrollbar-track {
+  background: var(--bg-cream);
+}
+
+::-webkit-scrollbar-thumb {
+  background: var(--burgundy);
+  border-radius: 99px;
+}
