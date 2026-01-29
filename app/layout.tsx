@@ -1,34 +1,33 @@
 import type { Metadata } from "next";
 import "./globals.css";
 import { Cormorant_Garamond, Great_Vibes } from "next/font/google";
-
-const serif = Cormorant_Garamond({
-  subsets: ["latin"],
-  weight: ["400", "500", "600", "700"],
-  variable: "--font-serif",
-  display: "swap"
-});
-
-const script = Great_Vibes({
-  subsets: ["latin"],
-  weight: "400",
-  variable: "--font-script",
-  display: "swap"
-});
-
-export const metadata: Metadata = {
-  title: "Thiệp Cưới Online",
-  description: "Thiệp cưới online hiện đại, tinh tế và cảm xúc."
-};
-
 import AnimatedBackground from "../components/AnimatedBackground";
 import { WeddingRibbon } from "../components/WeddingRibbon";
 import { WeddingCardOpening } from "../components/WeddingCardOpening";
 import { MobileRedSeal } from "../components/MobileRedSeal";
 import { invitation } from "../lib/invitation";
 
+const serif = Cormorant_Garamond({
+  subsets: ["latin"],
+  weight: ["400", "500", "600", "700"],
+  variable: "--font-serif",
+  display: "swap",
+});
+
+const script = Great_Vibes({
+  subsets: ["latin"],
+  weight: "400",
+  variable: "--font-script",
+  display: "swap",
+});
+
+export const metadata: Metadata = {
+  title: "Thiệp Cưới Online",
+  description: "Thiệp cưới online hiện đại, tinh tế và cảm xúc.",
+};
+
 export default function RootLayout({
-  children
+  children,
 }: {
   children: React.ReactNode;
 }) {
@@ -42,10 +41,7 @@ export default function RootLayout({
           <AnimatedBackground />
           <WeddingRibbon />
           <MobileRedSeal data={invitation} />
-
-          <div className="relative z-10">
-            {children}
-          </div>
+          <div className="relative z-10">{children}</div>
         </div>
       </body>
     </html>

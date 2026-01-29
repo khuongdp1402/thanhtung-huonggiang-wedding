@@ -3,7 +3,7 @@ module.exports = {
   content: [
     "./app/**/*.{js,ts,jsx,tsx}",
     "./components/**/*.{js,ts,jsx,tsx}",
-    "./lib/**/*.{js,ts,jsx,tsx}"
+    "./lib/**/*.{js,ts,jsx,tsx}",
   ],
   theme: {
     extend: {
@@ -30,14 +30,12 @@ module.exports = {
       fontFamily: {
         serif: ["var(--font-serif)", "serif"],
         script: ["var(--font-script)", "cursive"],
-        body: ["Inter", "sans-serif"],
       },
       boxShadow: {
         card: "0 10px 30px -5px rgba(0, 0, 0, 0.05), 0 4px 10px -5px rgba(128, 0, 32, 0.02)",
         gold: "0 0 0 1px rgba(212, 175, 55, 0.3)",
-      }
-    }
+      },
+    },
   },
-  plugins: []
+  plugins: [],
 };
-
