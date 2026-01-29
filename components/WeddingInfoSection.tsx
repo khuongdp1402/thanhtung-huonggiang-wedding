@@ -82,9 +82,12 @@ export function WeddingInfoSection({ data }: WeddingInfoSectionProps) {
                 <div className="gold-divider w-32 mx-auto opacity-60" />
 
                 <div className="space-y-8 mt-8">
-                  <h3 className="text-lg sm:text-xl text-burgundy font-bold tracking-[0.25em] uppercase">
-                    Trân trọng báo tin Lễ Thành Hôn
+                  <h3 className="text-xl sm:text-2xl text-burgundy font-bold tracking-[0.25em] uppercase mb-2">
+                    Save The Date
                   </h3>
+                  <p className="text-sm font-serif italic text-gold mb-6 tracking-widest uppercase opacity-80 decoration-slice">
+                    — Ngày chung đôi —
+                  </p>
 
                   <p className="text-5xl sm:text-6xl font-serif text-burgundy font-bold">
                     {data.ceremony.timeLabel}

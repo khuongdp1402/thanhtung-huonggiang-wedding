@@ -34,6 +34,16 @@ export function QuoteSection({ data }: QuoteSectionProps) {
               <p className="text-2xl sm:text-3xl lg:text-4xl font-serif text-ink italic leading-[1.8] opacity-95 drop-shadow-sm font-medium">
                 “{data.quote}”
               </p>
+
+              <div className="mt-8 space-y-2">
+                <p className="text-lg sm:text-xl font-serif text-burgundy italic font-medium opacity-80">
+                  "Trăm năm tình viên mãn"
+                </p>
+                <p className="text-lg sm:text-xl font-serif text-burgundy italic font-medium opacity-80">
+                  "Bạc đầu nghĩa phu thê"
+                </p>
+              </div>
+
               <div className="gold-divider w-24 mt-10" />
             </Reveal>
           </div>

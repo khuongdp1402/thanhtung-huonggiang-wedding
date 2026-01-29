@@ -22,8 +22,8 @@ const script = Great_Vibes({
 });
 
 export const metadata: Metadata = {
-  title: "Thiệp Cưới Online",
-  description: "Thiệp cưới online hiện đại, tinh tế và cảm xúc.",
+  title: "Thiệp mời Thanh Tùng - Hương Giang | 13.02.2026",
+  description: "Trân trọng kính mời bạn đến chung vui cùng gia đình chúng mình.",
 };
 
 export default function RootLayout({
