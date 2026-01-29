@@ -12,31 +12,34 @@ export function WeddingInfoSection({ data }: WeddingInfoSectionProps) {
     <Section id="thong-tin" className="relative py-16 lg:py-24 overflow-hidden bg-white">
       <div className="mx-auto max-w-6xl px-4 relative z-10">
         {/* Row 1: Parents info horizontally */}
-        <div className="grid grid-cols-2 gap-4 md:gap-24 mb-12 sm:mb-20 px-2 sm:px-0">
+        <div className="grid grid-cols-[1fr_auto_1fr] gap-2 md:gap-12 mb-12 sm:mb-20 px-0 items-center">
           {/* Nhà trai */}
           <Reveal x={-20}>
-            <div className="space-y-4 text-center md:text-left border-t border-gold/20 pt-8">
-              <div className="inline-flex items-center gap-2 mb-2">
-                <p className="text-[0.7rem] uppercase tracking-[0.4em] text-burgundy font-bold">Nhà trai</p>
-                <Flower className="w-3 h-3 text-gold/40" />
+            <div className="space-y-4 text-center border-t border-gold/20 pt-6">
+              <div className="flex flex-col items-center gap-2 mb-2">
+                <p className="text-[0.6rem] sm:text-[0.7rem] uppercase tracking-[0.2em] text-burgundy font-bold whitespace-nowrap">Nhà trai</p>
+                <div className="w-1 h-1 bg-gold/40 rounded-full" />
               </div>
-              <div className="space-y-1">
-                <p className="text-xl text-ink-dark font-serif font-medium leading-relaxed">{data.groom.parents.father}</p>
-                <p className="text-xl text-ink-dark font-serif font-medium leading-relaxed">{data.groom.parents.mother}</p>
+              <div className="space-y-0.5">
+                <p className="text-base sm:text-xl text-ink-dark font-serif font-medium leading-relaxed whitespace-nowrap">{data.groom.parents.father}</p>
+                <p className="text-base sm:text-xl text-ink-dark font-serif font-medium leading-relaxed whitespace-nowrap">{data.groom.parents.mother}</p>
               </div>
             </div>
           </Reveal>
 
+          {/* Divider */}
+          <div className="h-24 w-px bg-gold/20 mx-auto" />
+
           {/* Nhà gái */}
           <Reveal x={20}>
-            <div className="space-y-4 text-center md:text-right border-t border-gold/20 pt-8">
-              <div className="inline-flex items-center gap-2 mb-2 md:flex-row-reverse">
-                <p className="text-[0.8rem] uppercase tracking-[0.4em] text-burgundy font-bold">Nhà gái</p>
-                <Flower className="w-3 h-3 text-gold/40" />
+            <div className="space-y-4 text-center border-t border-gold/20 pt-6">
+              <div className="flex flex-col items-center gap-2 mb-2">
+                <p className="text-[0.6rem] sm:text-[0.7rem] uppercase tracking-[0.2em] text-burgundy font-bold whitespace-nowrap">Nhà gái</p>
+                <div className="w-1 h-1 bg-gold/40 rounded-full" />
               </div>
-              <div className="space-y-1">
-                <p className="text-xl text-ink-dark font-serif font-medium leading-relaxed">{data.bride.parents.father}</p>
-                <p className="text-xl text-ink-dark font-serif font-medium leading-relaxed">{data.bride.parents.mother}</p>
+              <div className="space-y-0.5">
+                <p className="text-base sm:text-xl text-ink-dark font-serif font-medium leading-relaxed whitespace-nowrap">{data.bride.parents.father}</p>
+                <p className="text-base sm:text-xl text-ink-dark font-serif font-medium leading-relaxed whitespace-nowrap">{data.bride.parents.mother}</p>
               </div>
             </div>
           </Reveal>
