@@ -28,12 +28,12 @@ export function RSVPSection() {
               <Heart className="w-24 h-24 text-burgundy fill-burgundy" />
             </div>
 
-            <h2 className="title-primary text-sm sm:text-base mb-6 flex items-center justify-center gap-3">
-              <Flower className="w-4 h-4 text-gold/60" />
+            <h2 className="title-primary text-lg sm:text-xl font-bold mb-6 flex items-center justify-center gap-4 tracking-[0.25em]">
+              <Flower className="w-5 h-5 text-gold/60" />
               Xác nhận tham dự
-              <Flower className="w-4 h-4 text-gold/60" />
+              <Flower className="w-5 h-5 text-gold/60" />
             </h2>
-            <h3 className="text-2xl sm:text-4xl font-serif text-ink-dark font-black mb-10 leading-relaxed max-w-2xl mx-auto">
+            <h3 className="text-3xl sm:text-5xl font-serif text-ink-dark font-black mb-12 leading-relaxed max-w-3xl mx-auto">
               Quý khách có thể tham dự lễ cưới cùng chúng tôi không?
             </h3>
 
@@ -44,17 +44,17 @@ export function RSVPSection() {
                 whileTap={{ scale: 0.98 }}
                 onClick={() => setChoice("yes")}
                 className={`p-10 text-center transition-all duration-500 border-2 rounded-none ${choice === "yes"
-                    ? "border-burgundy bg-burgundy text-white shadow-2xl"
-                    : "border-gold/20 bg-cream-light/30 text-burgundy hover:bg-cream-light hover:border-gold/50"
+                  ? "border-burgundy bg-burgundy text-white shadow-2xl"
+                  : "border-gold/20 bg-cream-light/30 text-burgundy hover:bg-cream-light hover:border-gold/50"
                   }`}
               >
-                <div className="flex flex-col items-center gap-4">
-                  <div className={`p-3 rounded-full ${choice === 'yes' ? 'bg-white/20' : 'bg-gold/10'}`}>
-                    <Heart className={`w-6 h-6 ${choice === 'yes' ? 'text-white fill-white' : 'text-burgundy fill-burgundy/20'}`} />
+                <div className="flex flex-col items-center gap-5">
+                  <div className={`p-4 rounded-full ${choice === 'yes' ? 'bg-white/20' : 'bg-gold/10'}`}>
+                    <Heart className={`w-8 h-8 ${choice === 'yes' ? 'text-white fill-white' : 'text-burgundy fill-burgundy/20'}`} />
                   </div>
-                  <div className="space-y-1">
-                    <p className="text-sm tracking-[0.4em] font-black uppercase">Sẽ tham dự</p>
-                    <p className={`text-xs sm:text-sm font-serif italic ${choice === "yes" ? "text-white/80" : "text-ink/60"}`}>
+                  <div className="space-y-2">
+                    <p className="text-base tracking-[0.2em] font-black uppercase">Sẽ tham dự</p>
+                    <p className={`text-sm sm:text-base font-serif italic ${choice === "yes" ? "text-white/80" : "text-ink/60"}`}>
                       Hân hạnh được chung vui cùng hai bạn
                     </p>
                   </div>
@@ -67,17 +67,17 @@ export function RSVPSection() {
                 whileTap={{ scale: 0.98 }}
                 onClick={() => setChoice("no")}
                 className={`p-10 text-center transition-all duration-500 border-2 rounded-none ${choice === "no"
-                    ? "border-burgundy bg-burgundy text-white shadow-2xl"
-                    : "border-gold/20 bg-cream-light/30 text-burgundy hover:bg-cream-light hover:border-gold/50"
+                  ? "border-burgundy bg-burgundy text-white shadow-2xl"
+                  : "border-gold/20 bg-cream-light/30 text-burgundy hover:bg-cream-light hover:border-gold/50"
                   }`}
               >
-                <div className="flex flex-col items-center gap-4">
-                  <div className={`p-3 rounded-full ${choice === 'no' ? 'bg-white/20' : 'bg-gold/10'}`}>
-                    <Flower className={`w-6 h-6 ${choice === 'no' ? 'text-white' : 'text-burgundy'}`} />
+                <div className="flex flex-col items-center gap-5">
+                  <div className={`p-4 rounded-full ${choice === 'no' ? 'bg-white/20' : 'bg-gold/10'}`}>
+                    <Flower className={`w-8 h-8 ${choice === 'no' ? 'text-white' : 'text-burgundy'}`} />
                   </div>
-                  <div className="space-y-1">
-                    <p className="text-sm tracking-[0.4em] font-black uppercase">Vắng mặt</p>
-                    <p className={`text-xs sm:text-sm font-serif italic ${choice === "no" ? "text-white/80" : "text-ink/60"}`}>
+                  <div className="space-y-2">
+                    <p className="text-base tracking-[0.2em] font-black uppercase">Vắng mặt</p>
+                    <p className={`text-sm sm:text-base font-serif italic ${choice === "no" ? "text-white/80" : "text-ink/60"}`}>
                       Rất tiếc vì không thể tham dự
                     </p>
                   </div>

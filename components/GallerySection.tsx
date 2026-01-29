@@ -57,9 +57,9 @@ export function GallerySection({ data }: GallerySectionProps) {
       <div className="mx-auto max-w-7xl px-4">
         <Reveal>
           <div className="text-center mb-20">
-            <h2 className="title-primary text-sm sm:text-base mb-4">Bộ ảnh kỷ niệm</h2>
-            <div className="gold-divider w-16" />
-            <p className="mt-6 text-2xl sm:text-3xl font-serif text-ink italic opacity-90">
+            <h2 className="title-primary text-lg sm:text-xl font-bold mb-6 tracking-[0.25em]">Bộ ảnh kỷ niệm</h2>
+            <div className="gold-divider w-24 opacity-60" />
+            <p className="mt-8 text-3xl sm:text-4xl font-serif text-ink italic opacity-90 leading-tight">
               “Những khoảnh khắc chúng mình yêu nhất.”
             </p>
           </div>

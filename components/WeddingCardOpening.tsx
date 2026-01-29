@@ -56,17 +56,24 @@ export function WeddingCardOpening() {
                                     animate={{ y: 0, opacity: 1 }}
                                     transition={{ delay: 0.5 }}
                                 >
-                                    <p className="text-burgundy text-[10px] tracking-[0.6em] uppercase font-bold mb-4">Trân trọng kính mời</p>
-                                    <div className="h-px w-12 bg-gold/30 mx-auto mb-6" />
-                                    <h2 className="text-2xl font-serif text-ink-dark italic mb-8">
-                                        Chạm để mở thiệp
+                                    <p className="text-burgundy text-sm sm:text-base tracking-[0.4em] uppercase font-bold mb-4">Trân trọng báo tin</p>
+                                    <div className="h-px w-24 bg-gold/40 mx-auto mb-6" />
+
+                                    <div className="mb-8 space-y-2">
+                                        <p className="text-3xl sm:text-4xl font-script text-burgundy font-bold">Thanh Tùng</p>
+                                        <p className="text-xl sm:text-2xl font-script text-gold">&</p>
+                                        <p className="text-3xl sm:text-4xl font-script text-burgundy font-bold">Hương Giang</p>
+                                    </div>
+
+                                    <h2 className="text-lg sm:text-xl font-serif text-ink-dark/60 italic mb-8">
+                                        (Chạm để mở thiệp)
                                     </h2>
                                     <motion.div
                                         animate={{ scale: [1, 1.1, 1] }}
                                         transition={{ duration: 2, repeat: Infinity }}
                                         className="text-gold/60"
                                     >
-                                        <Heart className="w-6 h-6 fill-gold/10 mx-auto" />
+                                        <Heart className="w-8 h-8 fill-gold/10 mx-auto" />
                                     </motion.div>
                                 </motion.div>
                             </div>

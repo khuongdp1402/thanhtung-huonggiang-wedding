@@ -57,23 +57,23 @@ export function WeddingInfoSection({ data }: WeddingInfoSectionProps) {
               </div>
 
               <div className="space-y-8">
-                <div className="flex flex-col md:flex-row items-center justify-center gap-8 md:gap-12 min-w-full">
+                <div className="flex flex-col md:flex-row items-center justify-center gap-6 md:gap-10 min-w-full">
                   <div className="flex flex-col items-center">
-                    <span className="text-5xl sm:text-7xl lg:text-8xl font-script text-burgundy font-bold whitespace-nowrap leading-relaxed drop-shadow-sm">
+                    <span className="text-4xl sm:text-6xl lg:text-7xl font-script text-burgundy font-bold whitespace-nowrap leading-relaxed drop-shadow-sm">
                       {data.groom.name}
                     </span>
-                    <span className="text-xl sm:text-2xl font-serif text-ink-dark font-bold tracking-[0.2em] uppercase mt-2">
+                    <span className="text-lg sm:text-xl font-serif text-ink-dark font-bold tracking-[0.2em] uppercase mt-2">
                       Trưởng Nam
                     </span>
                   </div>
 
-                  <span className="text-4xl sm:text-6xl font-script text-gold my-4 md:my-0 opacity-80">&</span>
+                  <span className="text-3xl sm:text-5xl font-script text-gold my-4 md:my-0 opacity-80">&</span>
 
                   <div className="flex flex-col items-center">
-                    <span className="text-5xl sm:text-7xl lg:text-8xl font-script text-burgundy font-bold whitespace-nowrap leading-relaxed drop-shadow-sm">
+                    <span className="text-4xl sm:text-6xl lg:text-7xl font-script text-burgundy font-bold whitespace-nowrap leading-relaxed drop-shadow-sm">
                       {data.bride.name}
                     </span>
-                    <span className="text-xl sm:text-2xl font-serif text-ink-dark font-bold tracking-[0.2em] uppercase mt-2">
+                    <span className="text-lg sm:text-xl font-serif text-ink-dark font-bold tracking-[0.2em] uppercase mt-2">
                       Ái Nữ
                     </span>
                   </div>
@@ -112,6 +112,7 @@ export function WeddingInfoSection({ data }: WeddingInfoSectionProps) {
                   </p>
                 </div>
               </div>
+            </div>
           </Reveal>
         </div>
       </div>

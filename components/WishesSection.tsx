@@ -115,11 +115,11 @@ export function WishesSection() {
           <div className="grid gap-16 lg:grid-cols-12 items-start">
             <div className="lg:col-span-12 xl:col-span-5">
               <div className="sticky top-24">
-                <p className="text-[0.72rem] tracking-[0.42em] uppercase text-burgundy font-bold transition-all">Gửi lời chúc & Xác nhận</p>
-                <h2 className="mt-4 text-3xl sm:text-4xl font-serif text-ink-dark leading-tight">
+                <p className="text-sm tracking-[0.42em] uppercase text-burgundy font-bold transition-all">Gửi lời chúc & Xác nhận</p>
+                <h2 className="mt-4 text-4xl sm:text-5xl font-serif text-ink-dark leading-tight">
                   Lời chúc gửi trao,<br />Niềm vui trọn vẹn.
                 </h2>
-                <p className="mt-6 text-sm sm:text-base text-ink-dark/70 leading-relaxed mb-10">
+                <p className="mt-6 text-base sm:text-lg text-ink-dark leading-relaxed mb-10 font-medium">
                   Sự hiện diện và lời chúc của khách mời là món quà vô giá mà chúng mình trân quý nhất. Hãy cho tụi mình biết bạn có thể tham gia được không nhé!
                 </p>
 
@@ -141,17 +141,17 @@ export function WishesSection() {
                   <div className="grid gap-6">
                     {/* Attendance Selection Added Back */}
                     <label className="grid gap-2">
-                      <span className="text-[10px] tracking-[0.32em] uppercase text-ink/50 font-bold ml-2">Bạn có thể tham dự chứ?</span>
+                      <span className="text-xs sm:text-sm tracking-[0.32em] uppercase text-ink/60 font-bold ml-2">Bạn có thể tham dự chứ?</span>
                       <div className="flex gap-4 mt-2">
                         <button
                           onClick={() => setAttendance("yes")}
-                          className={`flex-1 py-4 rounded-2xl border transition-all text-sm font-medium ${attendance === "yes" ? "bg-burgundy text-white border-burgundy shadow-lg" : "bg-white/50 border-gold/10 text-ink/60 hover:border-burgundy/30"}`}
+                          className={`flex-1 py-4 rounded-2xl border transition-all text-base font-medium ${attendance === "yes" ? "bg-burgundy text-white border-burgundy shadow-lg" : "bg-white/50 border-gold/10 text-ink/60 hover:border-burgundy/30"}`}
                         >
                           Chắc chắn rồi! 🥂
                         </button>
                         <button
                           onClick={() => setAttendance("no")}
-                          className={`flex-1 py-4 rounded-2xl border transition-all text-sm font-medium ${attendance === "no" ? "bg-burgundy text-white border-burgundy shadow-lg" : "bg-white/50 border-gold/10 text-ink/60 hover:border-burgundy/30"}`}
+                          className={`flex-1 py-4 rounded-2xl border transition-all text-base font-medium ${attendance === "no" ? "bg-burgundy text-white border-burgundy shadow-lg" : "bg-white/50 border-gold/10 text-ink/60 hover:border-burgundy/30"}`}
                         >
                           Rất tiếc, mình bận... 💐
                         </button>
@@ -159,28 +159,28 @@ export function WishesSection() {
                     </label>
 
                     <label className="grid gap-2">
-                      <span className="text-[10px] tracking-[0.32em] uppercase text-ink/50 font-bold ml-2">Tên của bạn</span>
+                      <span className="text-xs sm:text-sm tracking-[0.32em] uppercase text-ink/60 font-bold ml-2">Tên của bạn</span>
                       <input
                         value={name}
                         onChange={(e) => setName(e.target.value)}
-                        className="h-14 rounded-2xl border border-gold/10 bg-white/50 px-6 text-sm outline-none focus:border-burgundy/30 transition-all shadow-sm"
+                        className="h-16 rounded-2xl border border-gold/10 bg-white/50 px-6 text-base outline-none focus:border-burgundy/30 transition-all shadow-sm font-medium"
                         placeholder="Ví dụ: Anh xã, Chị đại..."
                       />
                     </label>
 
                     <label className="grid gap-2">
-                      <span className="text-[10px] tracking-[0.32em] uppercase text-ink/50 font-bold ml-2">Lời chúc yêu thương</span>
+                      <span className="text-xs sm:text-sm tracking-[0.32em] uppercase text-ink/60 font-bold ml-2">Lời chúc yêu thương</span>
                       <textarea
                         value={message}
                         onChange={(e) => setMessage(e.target.value)}
-                        className="min-h-[160px] rounded-2xl border border-gold/10 bg-white/50 px-6 py-4 text-sm outline-none focus:border-burgundy/30 transition-all shadow-sm resize-none"
+                        className="min-h-[160px] rounded-2xl border border-gold/10 bg-white/50 px-6 py-4 text-base outline-none focus:border-burgundy/30 transition-all shadow-sm resize-none font-medium"
                         placeholder="Gửi một lời chúc thật ấm áp..."
                       />
                     </label>
                   </div>
 
                   <div className="flex flex-col sm:flex-row items-center justify-between gap-6 pt-4">
-                    <p className="text-[10px] text-ink/40 tracking-wider font-medium italic">Thông tin sẽ gửi đến Trang tính và Lưu trữ mãi mãi.</p>
+                    <p className="text-xs text-ink/50 tracking-wider font-medium italic">Thông tin sẽ gửi đến Trang tính và Lưu trữ mãi mãi.</p>
 
                     <motion.button
                       type="button"
@@ -188,7 +188,7 @@ export function WishesSection() {
                       whileTap={canSubmit ? { scale: 0.95 } : {}}
                       onClick={onSubmit}
                       disabled={!canSubmit}
-                      className={`inline-flex items-center justify-center rounded-none px-12 py-4 text-[10px] tracking-[0.5em] uppercase transition-all duration-300 shadow-xl min-w-[200px] ${status === "submitting" ? "bg-burgundy/50 text-white cursor-wait" :
+                      className={`inline-flex items-center justify-center rounded-none px-12 py-5 text-sm tracking-[0.3em] uppercase transition-all duration-300 shadow-xl min-w-[240px] font-bold ${status === "submitting" ? "bg-burgundy/50 text-white cursor-wait" :
                         canSubmit
                           ? "bg-burgundy text-white hover:bg-burgundy-dark"
                           : "bg-burgundy/5 text-burgundy/20 cursor-not-allowed"
