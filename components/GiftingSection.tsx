@@ -90,13 +90,13 @@ export function GiftingSection({ data }: GiftingSectionProps) {
                                             <div className="flex items-center gap-3">
                                                 <CreditCard className="w-5 h-5 text-burgundy/60" />
                                                 <div>
-                                                    <p className="text-[10px] uppercase tracking-widest text-ink/40 font-bold">{gifting.groom.bankName}</p>
-                                                    <p className="text-sm font-medium text-ink-dark">{gifting.groom.accountNumber}</p>
+                                                    <p className="text-[10px] uppercase tracking-widest text-ink/60 font-bold">{gifting.groom.bankName}</p>
+                                                    <p className="text-base font-bold text-ink-dark">{gifting.groom.accountNumber}</p>
                                                 </div>
                                             </div>
                                             <button
                                                 onClick={() => copyToClipboard(gifting.groom.accountNumber, 'groom-bank')}
-                                                className="hover:text-burgundy text-ink/30 transition-colors"
+                                                className="hover:text-burgundy text-ink/50 transition-colors"
                                             >
                                                 <Copy className={`w-4 h-4 ${copiedId === 'groom-bank' ? 'text-burgundy scale-125' : ''} transition-transform`} />
                                             </button>
@@ -106,11 +106,11 @@ export function GiftingSection({ data }: GiftingSectionProps) {
                                         <div className="p-4 rounded-xl bg-gold/[0.03] border border-gold/10 space-y-3">
                                             <div className="flex items-start gap-3">
                                                 <Home className="w-5 h-5 text-gold/60 mt-0.5" />
-                                                <p className="text-xs text-ink/70 leading-relaxed font-medium">{gifting.groom.address}</p>
+                                                <p className="text-sm text-ink leading-relaxed font-medium">{gifting.groom.address}</p>
                                             </div>
                                             <div className="flex items-center gap-3">
                                                 <Phone className="w-5 h-5 text-gold/60" />
-                                                <p className="text-xs text-ink-dark font-bold">{gifting.groom.phone}</p>
+                                                <p className="text-sm text-ink-dark font-bold">{gifting.groom.phone}</p>
                                             </div>
                                         </div>
                                     </div>
@@ -139,13 +139,13 @@ export function GiftingSection({ data }: GiftingSectionProps) {
                                             <div className="flex items-center gap-3">
                                                 <CreditCard className="w-5 h-5 text-burgundy/60" />
                                                 <div>
-                                                    <p className="text-[10px] uppercase tracking-widest text-ink/40 font-bold">{gifting.bride.bankName}</p>
-                                                    <p className="text-sm font-medium text-ink-dark">{gifting.bride.accountNumber}</p>
+                                                    <p className="text-[10px] uppercase tracking-widest text-ink/60 font-bold">{gifting.bride.bankName}</p>
+                                                    <p className="text-base font-bold text-ink-dark">{gifting.bride.accountNumber}</p>
                                                 </div>
                                             </div>
                                             <button
                                                 onClick={() => copyToClipboard(gifting.bride.accountNumber, 'bride-bank')}
-                                                className="hover:text-burgundy text-ink/30 transition-colors"
+                                                className="hover:text-burgundy text-ink/50 transition-colors"
                                             >
                                                 <Copy className={`w-4 h-4 ${copiedId === 'bride-bank' ? 'text-burgundy scale-125' : ''} transition-transform`} />
                                             </button>
@@ -155,11 +155,11 @@ export function GiftingSection({ data }: GiftingSectionProps) {
                                         <div className="p-4 rounded-xl bg-gold/[0.03] border border-gold/10 space-y-3">
                                             <div className="flex items-start gap-3">
                                                 <Home className="w-5 h-5 text-gold/60 mt-0.5" />
-                                                <p className="text-xs text-ink/70 leading-relaxed font-medium">{gifting.bride.address}</p>
+                                                <p className="text-sm text-ink leading-relaxed font-medium">{gifting.bride.address}</p>
                                             </div>
                                             <div className="flex items-center gap-3">
                                                 <Phone className="w-5 h-5 text-gold/60" />
-                                                <p className="text-xs text-ink-dark font-bold">{gifting.bride.phone}</p>
+                                                <p className="text-sm text-ink-dark font-bold">{gifting.bride.phone}</p>
                                             </div>
                                         </div>
                                     </div>

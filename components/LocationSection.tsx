@@ -20,7 +20,7 @@ export function LocationSection({ data }: LocationSectionProps) {
               <h3 className="text-3xl sm:text-4xl font-serif text-ink-dark font-bold leading-tight mb-6">
                 {data.ceremony.venueName}
               </h3>
-              <p className="text-lg text-ink/80 leading-relaxed mb-10 max-w-md mx-auto md:mx-0">
+              <p className="text-xl text-ink leading-relaxed mb-10 max-w-md mx-auto md:mx-0 font-medium">
                 {data.ceremony.address}
               </p>
 
@@ -31,7 +31,7 @@ export function LocationSection({ data }: LocationSectionProps) {
                   href={data.ceremony.googleMapsUrl}
                   target="_blank"
                   rel="noreferrer"
-                  className="inline-flex items-center justify-center px-10 py-4 bg-burgundy text-white text-sm tracking-[0.3em] uppercase rounded-none hover:bg-burgundy-dark transition-all shadow-lg"
+                  className="inline-flex items-center justify-center px-10 py-4 bg-burgundy text-white text-base tracking-[0.3em] uppercase rounded-none hover:bg-burgundy-dark transition-all shadow-lg font-bold"
                 >
                   Mở Google Maps
                 </motion.a>
@@ -40,7 +40,7 @@ export function LocationSection({ data }: LocationSectionProps) {
                   whileHover={{ scale: 1.02, backgroundColor: "rgba(128, 0, 32, 0.05)" }}
                   whileTap={{ scale: 0.98 }}
                   href="#rsvp"
-                  className="inline-flex items-center justify-center px-10 py-4 border border-burgundy/20 bg-transparent text-burgundy text-xs tracking-[0.3em] uppercase transition-all"
+                  className="inline-flex items-center justify-center px-10 py-4 border border-burgundy/20 bg-transparent text-burgundy text-sm tracking-[0.3em] uppercase transition-all font-bold"
                 >
                   Xác nhận tham dự
                 </motion.a>

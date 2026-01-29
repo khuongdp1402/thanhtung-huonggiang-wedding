@@ -69,7 +69,7 @@ export const invitation: InvitationData = {
     solarDateLabel: "Thứ Sáu, 13/02/2026",
     lunarDateLabel: "Nhằm ngày 26 tháng 12 năm Ất Tỵ",
     timeLabel: "11:00",
-    venueName: "Tư Gia Nam",
+    venueName: "Tư Gia Nhà Trai",
     address: "Khu phố Lại Khánh Nam, phường Bồng Sơn, tỉnh Gia Lai",
     googleMapsUrl: "https://maps.app.goo.gl/JFYVdwMC6nBeyviS7",
     googleMapsEmbedUrl:

@@ -92,11 +92,11 @@ export function CountdownSection({ data }: CountdownSectionProps) {
           <div className="lg:col-span-6">
             <Reveal>
               <div className="text-center lg:text-left mb-12">
-                <h2 className="title-primary text-sm sm:text-base mb-4">
+                <h2 className="title-primary text-lg sm:text-xl font-bold mb-6 tracking-[0.25em]">
                   Đếm ngược ngày trọng đại
                 </h2>
-                <div className="gold-divider w-12 lg:mx-0" />
-                <p className="mt-6 text-2xl sm:text-3xl font-serif text-ink tracking-wide">
+                <div className="gold-divider w-24 lg:mx-0 opacity-60" />
+                <p className="mt-8 text-4xl sm:text-5xl font-serif text-burgundy font-bold tracking-tight">
                   {data.ceremony.solarDateLabel}
                 </p>
               </div>
@@ -107,7 +107,7 @@ export function CountdownSection({ data }: CountdownSectionProps) {
                 {items.map((item) => (
                   <div key={item.label} className="bg-white/40 backdrop-blur-md border border-gold/10 p-6 rounded-2xl shadow-sm text-center group hover:bg-white/60 transition-colors duration-500">
                     <NumberFlip value={item.value} />
-                    <p className="mt-4 text-[10px] sm:text-xs tracking-[0.3em] uppercase text-ink/60 font-bold">
+                    <p className="mt-4 text-sm sm:text-base tracking-[0.3em] uppercase text-ink font-bold">
                       {item.label}
                     </p>
                   </div>
@@ -116,7 +116,7 @@ export function CountdownSection({ data }: CountdownSectionProps) {
             </Reveal>
 
             <Reveal delay={0.3} y={20}>
-              <div className="mt-16 text-center lg:text-left italic text-ink/50 text-sm">
+              <div className="mt-16 text-center lg:text-left italic text-ink/70 text-lg font-serif">
                 “Dù đi đâu, làm gì, chỉ cần chúng ta bên nhau.”
               </div>
             </Reveal>

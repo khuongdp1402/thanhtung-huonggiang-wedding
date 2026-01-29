@@ -23,7 +23,6 @@ export function WeddingInfoSection({ data }: WeddingInfoSectionProps) {
               <div className="space-y-1">
                 <p className="text-xl text-ink-dark font-serif font-medium leading-relaxed">{data.groom.parents.father}</p>
                 <p className="text-xl text-ink-dark font-serif font-medium leading-relaxed">{data.groom.parents.mother}</p>
-                <p className="text-xs text-ink/40 uppercase tracking-widest mt-2 italic">Trưởng Nam</p>
               </div>
             </div>
           </Reveal>
@@ -32,13 +31,12 @@ export function WeddingInfoSection({ data }: WeddingInfoSectionProps) {
           <Reveal x={20}>
             <div className="space-y-4 text-center md:text-right border-t border-gold/20 pt-8">
               <div className="inline-flex items-center gap-2 mb-2 md:flex-row-reverse">
-                <p className="text-[0.7rem] uppercase tracking-[0.4em] text-burgundy font-bold">Nhà gái</p>
+                <p className="text-[0.8rem] uppercase tracking-[0.4em] text-burgundy font-bold">Nhà gái</p>
                 <Flower className="w-3 h-3 text-gold/40" />
               </div>
               <div className="space-y-1">
                 <p className="text-xl text-ink-dark font-serif font-medium leading-relaxed">{data.bride.parents.father}</p>
                 <p className="text-xl text-ink-dark font-serif font-medium leading-relaxed">{data.bride.parents.mother}</p>
-                <p className="text-xs text-ink/40 uppercase tracking-widest mt-2 italic">Ái Nữ</p>
               </div>
             </div>
           </Reveal>
@@ -58,28 +56,62 @@ export function WeddingInfoSection({ data }: WeddingInfoSectionProps) {
                 </div>
               </div>
 
-              <div className="space-y-6">
-                <h2 className="text-5xl sm:text-7xl font-script text-burgundy font-bold leading-tight">
-                  {data.groom.name} & {data.bride.name}
-                </h2>
-                <div className="gold-divider w-16 mx-auto" />
-              </div>
+              <div className="space-y-8">
+                <div className="flex flex-col md:flex-row items-center justify-center gap-8 md:gap-12 min-w-full">
+                  <div className="flex flex-col items-center">
+                    <span className="text-5xl sm:text-7xl lg:text-8xl font-script text-burgundy font-bold whitespace-nowrap leading-relaxed drop-shadow-sm">
+                      {data.groom.name}
+                    </span>
+                    <span className="text-xl sm:text-2xl font-serif text-ink-dark font-bold tracking-[0.2em] uppercase mt-2">
+                      Trưởng Nam
+                    </span>
+                  </div>
 
-              <div className="space-y-4">
-                <h3 className="title-primary text-sm sm:text-base text-burgundy/60">Trân trọng báo tin Lễ Thành Hôn</h3>
-                <p className="text-2xl sm:text-3xl font-serif text-ink-dark font-medium italic">{data.ceremony.timeLabel}</p>
-                <div className="space-y-1">
-                  <p className="text-xl text-ink-dark font-serif font-bold tracking-wide">{data.ceremony.solarDateLabel}</p>
-                  <p className="text-sm text-ink/60 font-medium">{data.ceremony.lunarDateLabel}</p>
+                  <span className="text-4xl sm:text-6xl font-script text-gold my-4 md:my-0 opacity-80">&</span>
+
+                  <div className="flex flex-col items-center">
+                    <span className="text-5xl sm:text-7xl lg:text-8xl font-script text-burgundy font-bold whitespace-nowrap leading-relaxed drop-shadow-sm">
+                      {data.bride.name}
+                    </span>
+                    <span className="text-xl sm:text-2xl font-serif text-ink-dark font-bold tracking-[0.2em] uppercase mt-2">
+                      Ái Nữ
+                    </span>
+                  </div>
+                </div>
+
+                <div className="gold-divider w-32 mx-auto opacity-60" />
+
+                <div className="space-y-8 mt-8">
+                  <h3 className="text-lg sm:text-xl text-burgundy font-bold tracking-[0.25em] uppercase">
+                    Trân trọng báo tin Lễ Thành Hôn
+                  </h3>
+
+                  <p className="text-5xl sm:text-6xl font-serif text-burgundy font-bold">
+                    {data.ceremony.timeLabel}
+                  </p>
+
+                  <div className="space-y-3">
+                    <p className="text-3xl sm:text-4xl text-ink-dark font-serif font-bold tracking-wide">
+                      {data.ceremony.solarDateLabel}
+                    </p>
+                    <p className="text-xl text-ink font-semibold">
+                      {data.ceremony.lunarDateLabel}
+                    </p>
+                  </div>
+                </div>
+
+                <div className="pt-12 border-t border-gold/20 inline-block px-12 mt-4">
+                  <p className="text-base uppercase tracking-[0.4em] text-burgundy font-bold mb-6">
+                    Địa điểm
+                  </p>
+                  <p className="text-4xl text-ink-dark font-serif font-black tracking-tight mb-4 leading-tight">
+                    {data.ceremony.venueName}
+                  </p>
+                  <p className="text-xl text-ink font-bold max-w-[500px] mx-auto leading-relaxed">
+                    {data.ceremony.address}
+                  </p>
                 </div>
               </div>
-
-              <div className="pt-10 border-t border-gold/10 inline-block px-12">
-                <p className="text-[0.6rem] uppercase tracking-[0.4em] text-burgundy font-bold mb-4">Địa điểm</p>
-                <p className="text-2xl text-ink-dark font-serif font-black tracking-tight mb-2">{data.ceremony.venueName}</p>
-                <p className="text-sm text-ink/80 max-w-[300px] mx-auto leading-relaxed">{data.ceremony.address}</p>
-              </div>
-            </div>
           </Reveal>
         </div>
       </div>
