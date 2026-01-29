@@ -12,7 +12,7 @@ export function WeddingInfoSection({ data }: WeddingInfoSectionProps) {
     <Section id="thong-tin" className="relative py-16 lg:py-24 overflow-hidden bg-white">
       <div className="mx-auto max-w-6xl px-4 relative z-10">
         {/* Row 1: Parents info horizontally */}
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-12 md:gap-24 mb-20">
+        <div className="grid grid-cols-2 gap-4 md:gap-24 mb-12 sm:mb-20 px-2 sm:px-0">
           {/* Nhà trai */}
           <Reveal x={-20}>
             <div className="space-y-4 text-center md:text-left border-t border-gold/20 pt-8">

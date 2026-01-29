@@ -1,7 +1,7 @@
 "use client";
 
-import { motion, useScroll, useTransform } from "framer-motion";
-import { useMemo, useRef } from "react";
+import { motion, useScroll, useTransform, AnimatePresence } from "framer-motion";
+import { useMemo, useRef, useState } from "react";
 import type { InvitationData } from "../lib/invitation";
 import { ImageWithFallback } from "./ImageWithFallback";
 import { Section } from "./Section";
@@ -52,6 +52,16 @@ function GalleryItem({ src, alt, className, parallax }: GalleryItemProps) {
 }
 
 export function GallerySection({ data }: GallerySectionProps) {
+  const [selectedImage, setSelectedImage] = useState<string | null>(null);
+
+  const handleImageClick = (src: string) => {
+    setSelectedImage(src);
+  };
+
+  const handleClose = () => {
+    setSelectedImage(null);
+  };
+
   return (
     <Section id="anh" className="relative py-24 lg:py-32 overflow-hidden">
       <div className="mx-auto max-w-7xl px-4">
@@ -70,11 +80,12 @@ export function GallerySection({ data }: GallerySectionProps) {
             <div
               key={item.src}
               className={`${index % 2 === 0 ? 'lg:translate-y-12' : 'lg:-translate-y-12'} transition-transform`}
+              onClick={() => handleImageClick(item.src)}
             >
               <GalleryItem
                 src={item.src}
                 alt={item.alt}
-                className="w-full"
+                className="w-full cursor-pointer"
                 parallax={index % 2 === 0 ? 20 : -20}
               />
             </div>
@@ -87,6 +98,41 @@ export function GallerySection({ data }: GallerySectionProps) {
           </div>
         </Reveal>
       </div>
+
+      {/* Lightbox Overlay */}
+      <AnimatePresence>
+        {selectedImage && (
+          <motion.div
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+            className="fixed inset-0 z-50 flex items-center justify-center bg-black/90 p-4 backdrop-blur-sm"
+            onClick={handleClose}
+          >
+            <motion.div
+              initial={{ scale: 0.9, opacity: 0 }}
+              animate={{ scale: 1, opacity: 1 }}
+              exit={{ scale: 0.9, opacity: 0 }}
+              className="relative max-w-5xl max-h-[85vh] overflow-hidden rounded-lg shadow-2xl"
+              onClick={(e) => e.stopPropagation()}
+            >
+              {/* Close Button */}
+              <button
+                onClick={handleClose}
+                className="absolute top-4 right-4 text-white/80 hover:text-white bg-black/20 hover:bg-black/40 rounded-full p-2 transition-all z-20"
+              >
+                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="lucide lucide-x"><path d="M18 6 6 18" /><path d="m6 6 12 12" /></svg>
+              </button>
+
+              <ImageWithFallback
+                src={selectedImage}
+                alt="Gallery Fullscreen"
+                className="w-full h-full object-contain max-h-[85vh]"
+              />
+            </motion.div>
+          </motion.div>
+        )}
+      </AnimatePresence>
     </Section>
   );
 }
