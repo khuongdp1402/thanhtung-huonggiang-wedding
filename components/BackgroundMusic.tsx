@@ -14,6 +14,7 @@ export function BackgroundMusic() {
         if (!audio) return;
 
         audio.volume = 0.5;
+        audio.playbackRate = 1.2;
 
         const startMusic = () => {
             if (hasStarted.current) return;

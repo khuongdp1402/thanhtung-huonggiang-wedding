@@ -9,8 +9,20 @@ type WeddingInfoSectionProps = {
 
 export function WeddingInfoSection({ data }: WeddingInfoSectionProps) {
   return (
-    <Section id="thong-tin" className="relative py-16 lg:py-24 overflow-hidden bg-white">
+    <Section id="thong-tin" className="relative overflow-hidden bg-white">
       <div className="mx-auto max-w-6xl px-4 relative z-10">
+        {/* Câu thành ngữ – giữa banner và thông tin 2 nhà */}
+        <Reveal y={16}>
+          <div className="text-center py-8 sm:py-10">
+            <p className="text-lg sm:text-xl font-serif text-burgundy italic font-medium opacity-90">
+              &ldquo;Trăm năm tình viên mãn&rdquo;
+            </p>
+            <p className="text-lg sm:text-xl font-serif text-burgundy italic font-medium opacity-90 mt-2">
+              &ldquo;Bạc đầu nghĩa phu thê&rdquo;
+            </p>
+          </div>
+        </Reveal>
+
         {/* Row 1: Parents info horizontally */}
         <div className="grid grid-cols-[1fr_auto_1fr] gap-2 md:gap-12 mb-12 sm:mb-20 px-0 items-center">
           {/* Nhà trai */}
@@ -48,35 +60,34 @@ export function WeddingInfoSection({ data }: WeddingInfoSectionProps) {
         {/* Row 2: Visual Centerpiece (Couple + Ceremony) */}
         <div className="max-w-4xl mx-auto">
           <Reveal y={30}>
-            <div className="text-center space-y-10 relative">
+            <div className="text-center space-y-6 relative">
               {/* Overlapping Images Style */}
-              <div className="relative h-64 sm:h-80 mb-16 mx-auto w-full max-w-md">
+              <div className="relative h-64 sm:h-80 mb-8 mx-auto w-full max-w-md">
                 <div className="absolute top-0 left-0 w-48 h-64 rounded-2xl overflow-hidden shadow-2xl border-4 border-white -rotate-6 z-0 transition-transform hover:z-20 hover:scale-105 duration-500">
-                  <img src="https://images.unsplash.com/photo-1519741497674-611481863552?auto=format&fit=crop&q=80&w=600" alt="Wedding 1" className="w-full h-full object-cover" />
+                  <img src="/images/z7481585343579_3930a96148bb262932c18954629fdfb1.jpg?auto=format&fit=crop&q=80&w=600" alt="Wedding 1" className="w-full h-full object-cover" />
                 </div>
                 <div className="absolute top-10 right-0 w-48 h-64 rounded-2xl overflow-hidden shadow-2xl border-4 border-white rotate-6 z-10 transition-transform hover:z-20 hover:scale-105 duration-500">
-                  <img src="https://images.unsplash.com/photo-1511285560929-80b456fea0bc?auto=format&fit=crop&q=80&w=600" alt="Wedding 2" className="w-full h-full object-cover" />
+                  <img src="/images/codau.jpg?auto=format&fit=crop&q=80&w=600" alt="Wedding 2" className="w-full h-full object-cover" />
                 </div>
               </div>
 
-              <div className="space-y-8">
-                <div className="flex flex-col md:flex-row items-center justify-center gap-6 md:gap-10 min-w-full">
-                  <div className="flex flex-col items-center">
-                    <span className="text-4xl sm:text-6xl lg:text-7xl font-script text-burgundy font-bold whitespace-nowrap leading-relaxed drop-shadow-sm">
+              <div className="space-y-5">
+                <div className="flex flex-col gap-3 w-full max-w-4xl mx-auto">
+                  {/* Dòng 1: Chú rể – căn trái */}
+                  <div className="text-left">
+                    <span className="text-3xl sm:text-5xl lg:text-6xl font-script text-burgundy font-bold leading-relaxed drop-shadow-sm">
                       {data.groom.name}
                     </span>
-                    <span className="text-lg sm:text-xl font-serif text-ink-dark font-bold tracking-[0.2em] uppercase mt-2">
+                    <span className="block text-base sm:text-lg font-serif text-ink-dark font-bold tracking-[0.2em] uppercase mt-1">
                       Trưởng Nam
                     </span>
                   </div>
-
-                  <span className="text-3xl sm:text-5xl font-script text-gold my-4 md:my-0 opacity-80">&</span>
-
-                  <div className="flex flex-col items-center">
-                    <span className="text-4xl sm:text-6xl lg:text-7xl font-script text-burgundy font-bold whitespace-nowrap leading-relaxed drop-shadow-sm">
+                  {/* Dòng 2: Cô dâu – căn phải */}
+                  <div className="text-right">
+                    <span className="text-3xl sm:text-5xl lg:text-6xl font-script text-burgundy font-bold leading-relaxed drop-shadow-sm">
                       {data.bride.name}
                     </span>
-                    <span className="text-lg sm:text-xl font-serif text-ink-dark font-bold tracking-[0.2em] uppercase mt-2">
+                    <span className="block text-base sm:text-lg font-serif text-ink-dark font-bold tracking-[0.2em] uppercase mt-1">
                       Ái Nữ
                     </span>
                   </div>
@@ -84,19 +95,20 @@ export function WeddingInfoSection({ data }: WeddingInfoSectionProps) {
 
                 <div className="gold-divider w-32 mx-auto opacity-60" />
 
-                <div className="space-y-8 mt-8">
-                  <h3 className="text-xl sm:text-2xl text-burgundy font-bold tracking-[0.25em] uppercase mb-2">
-                    Save The Date
-                  </h3>
-                  <p className="text-sm font-serif italic text-gold mb-6 tracking-widest uppercase opacity-80 decoration-slice">
-                    — Ngày chung đôi —
-                  </p>
+                <div className="space-y-4 mt-4">
+                  <div className="flex flex-wrap items-center justify-center gap-4 sm:gap-6">
+                    <div className="text-center">
+                      <p className="text-ink/70 text-xs sm:text-sm uppercase tracking-wider font-semibold mb-0.5">Giờ làm lễ</p>
+                      <p className="text-4xl sm:text-5xl font-serif text-burgundy font-bold">{data.ceremony.timeLabel}</p>
+                    </div>
+                    <div className="w-px h-10 bg-gold/30 hidden sm:block" />
+                    <div className="text-center">
+                      <p className="text-ink/70 text-xs sm:text-sm uppercase tracking-wider font-semibold mb-0.5">Giờ nhập tiệc</p>
+                      <p className="text-4xl sm:text-5xl font-serif text-burgundy font-bold">{data.ceremony.receptionTimeLabel}</p>
+                    </div>
+                  </div>
 
-                  <p className="text-5xl sm:text-6xl font-serif text-burgundy font-bold">
-                    {data.ceremony.timeLabel}
-                  </p>
-
-                  <div className="space-y-3">
+                  <div className="space-y-1">
                     <p className="text-3xl sm:text-4xl text-ink-dark font-serif font-bold tracking-wide">
                       {data.ceremony.solarDateLabel}
                     </p>
@@ -106,11 +118,11 @@ export function WeddingInfoSection({ data }: WeddingInfoSectionProps) {
                   </div>
                 </div>
 
-                <div className="pt-12 border-t border-gold/20 inline-block px-12 mt-4">
-                  <p className="text-base uppercase tracking-[0.4em] text-burgundy font-bold mb-6">
+                <div className="pt-6 border-t border-gold/20 inline-block px-8 mt-2">
+                  <p className="text-base uppercase tracking-[0.4em] text-burgundy font-bold mb-3">
                     Địa điểm
                   </p>
-                  <p className="text-4xl text-ink-dark font-serif font-black tracking-tight mb-4 leading-tight">
+                  <p className="text-4xl text-ink-dark font-serif font-black tracking-tight mb-2 leading-tight">
                     {data.ceremony.venueName}
                   </p>
                   <p className="text-xl text-ink font-bold max-w-[500px] mx-auto leading-relaxed">
@@ -123,9 +135,11 @@ export function WeddingInfoSection({ data }: WeddingInfoSectionProps) {
         </div>
       </div>
 
-      {/* Background Decor icons */}
-      <div className="absolute top-20 right-[-5%] opacity-[0.03] text-burgundy pointer-events-none select-none text-[20rem] font-serif rotate-12">
-        Love
+      {/* Chữ nền Love – resize cho mobile, bling nhẹ */}
+      <div className="absolute top-20 right-[-5%] pointer-events-none select-none font-serif rotate-12 bg-bling-text">
+        <span className="block text-[4rem] sm:text-[10rem] lg:text-[20rem] text-burgundy/10 sm:text-burgundy/[0.05] lg:text-burgundy/[0.03]">
+          Love
+        </span>
       </div>
     </Section>
   );

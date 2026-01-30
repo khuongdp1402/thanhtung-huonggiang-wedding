@@ -16,11 +16,11 @@ export function LocationSection({ data }: LocationSectionProps) {
         <Reveal>
           <div className="grid gap-16 md:grid-cols-12 md:gap-20 items-center">
             <div className="md:col-span-5 text-center md:text-left">
-              <h2 className="title-primary text-sm sm:text-base mb-6">Địa điểm tổ chức</h2>
-              <h3 className="text-3xl sm:text-4xl font-serif text-ink-dark font-bold leading-tight mb-6">
+              <h2 className="title-primary text-base sm:text-lg mb-6">Địa điểm tổ chức</h2>
+              <h3 className="text-4xl sm:text-5xl lg:text-6xl font-serif text-ink-dark font-bold leading-tight mb-6">
                 {data.ceremony.venueName}
               </h3>
-              <p className="text-xl text-ink leading-relaxed mb-10 max-w-md mx-auto md:mx-0 font-medium">
+              <p className="text-xl sm:text-2xl text-ink leading-relaxed mb-10 max-w-md mx-auto md:mx-0 font-medium">
                 {data.ceremony.address}
               </p>
 
@@ -39,7 +39,7 @@ export function LocationSection({ data }: LocationSectionProps) {
                 <motion.a
                   whileHover={{ scale: 1.02, backgroundColor: "rgba(128, 0, 32, 0.05)" }}
                   whileTap={{ scale: 0.98 }}
-                  href="#rsvp"
+                  href="#loi-chuc"
                   className="inline-flex items-center justify-center px-10 py-4 border border-burgundy/20 bg-transparent text-burgundy text-sm tracking-[0.3em] uppercase transition-all font-bold"
                 >
                   Xác nhận tham dự

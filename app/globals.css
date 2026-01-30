@@ -9,12 +9,19 @@
   --text-main: #4A4A4A;
 }
 
-html,
-body {
+html {
   padding: 0;
   margin: 0;
   scroll-behavior: smooth;
-  background-color: var(--bg-cream);
+  background-color: #0a0a0a;
+  overflow-x: hidden;
+}
+
+body {
+  padding: 0;
+  margin: 0;
+  background-color: #0a0a0a;
+  overflow-x: hidden;
 }
 
 body {
@@ -75,6 +82,153 @@ body {
 
 .gold-divider {
   @apply h-px w-24 bg-gradient-to-r from-transparent via-gold to-transparent mx-auto my-8;
+}
+
+/* Bling bling nền ngoài bìa thiệp */
+@keyframes shimmer-bling {
+  0%, 100% { background-position: -200% 0; }
+  50% { background-position: 200% 0; }
+}
+@keyframes sparkle-bling {
+  0%, 100% { opacity: 0.3; transform: scale(0.8); }
+  50% { opacity: 0.8; transform: scale(1); }
+}
+.card-cover-bling-bg {
+  background-color: #70261B;
+  position: relative;
+  overflow: hidden;
+}
+.card-cover-bling-bg::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    105deg,
+    transparent 0%,
+    rgba(255, 255, 255, 0.06) 20%,
+    rgba(212, 175, 55, 0.15) 40%,
+    rgba(255, 255, 255, 0.12) 50%,
+    rgba(212, 175, 55, 0.15) 60%,
+    rgba(255, 255, 255, 0.06) 80%,
+    transparent 100%
+  );
+  background-size: 200% 100%;
+  animation: shimmer-bling 2.5s ease-in-out infinite;
+  pointer-events: none;
+}
+.card-cover-bling-bg .bling-sparkle {
+  position: absolute;
+  width: 4px;
+  height: 4px;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.7);
+  box-shadow: 0 0 8px rgba(212, 175, 55, 0.6);
+  animation: sparkle-bling 2s ease-in-out infinite;
+  pointer-events: none;
+}
+.card-cover-bling-bg .bling-sparkle:nth-child(1) { left: 10%; top: 15%; animation-delay: 0s; }
+.card-cover-bling-bg .bling-sparkle:nth-child(2) { left: 25%; top: 8%; animation-delay: 0.3s; width: 3px; height: 3px; }
+.card-cover-bling-bg .bling-sparkle:nth-child(3) { right: 15%; top: 20%; animation-delay: 0.6s; }
+.card-cover-bling-bg .bling-sparkle:nth-child(4) { right: 8%; top: 12%; animation-delay: 0.2s; width: 3px; height: 3px; }
+.card-cover-bling-bg .bling-sparkle:nth-child(5) { left: 12%; bottom: 25%; animation-delay: 0.5s; }
+.card-cover-bling-bg .bling-sparkle:nth-child(6) { right: 20%; bottom: 18%; animation-delay: 0.4s; width: 3px; height: 3px; }
+.card-cover-bling-bg .bling-sparkle:nth-child(7) { left: 50%; top: 5%; animation-delay: 0.7s; }
+.card-cover-bling-bg .bling-sparkle:nth-child(8) { right: 35%; bottom: 30%; animation-delay: 0.1s; }
+.card-cover-bling-bg .bling-sparkle:nth-child(9) { left: 40%; bottom: 12%; animation-delay: 0.8s; width: 3px; height: 3px; }
+
+/* Layer bìa thiệp: shimmer + sparkles – di chuyển chậm, lặp lại */
+.card-cover-bling-shimmer {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    105deg,
+    transparent 0%,
+    rgba(255, 255, 255, 0.06) 20%,
+    rgba(212, 175, 55, 0.15) 40%,
+    rgba(255, 255, 255, 0.12) 50%,
+    rgba(212, 175, 55, 0.15) 60%,
+    rgba(255, 255, 255, 0.06) 80%,
+    transparent 100%
+  );
+  background-size: 200% 100%;
+  animation: shimmer-bling 6s ease-in-out infinite;
+}
+/* Banner: bling sáng ngang di chuyển chậm, lặp lại liên tục */
+@keyframes shimmer-bling-slow {
+  0% { background-position: 150% 0; }
+  100% { background-position: -150% 0; }
+}
+.banner-bling-shimmer {
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+  pointer-events: none;
+  background: linear-gradient(
+    105deg,
+    transparent 0%,
+    transparent 20%,
+    rgba(255, 255, 255, 0.12) 32%,
+    rgba(212, 175, 55, 0.28) 42%,
+    rgba(255, 255, 255, 0.18) 50%,
+    rgba(212, 175, 55, 0.28) 58%,
+    rgba(255, 255, 255, 0.12) 68%,
+    transparent 80%,
+    transparent 100%
+  );
+  background-size: 50% 100%;
+  animation: shimmer-bling-slow 7s linear infinite;
+}
+
+.card-cover-bling-layer .card-cover-bling-sparkles {
+  position: absolute;
+  inset: 0;
+}
+.card-cover-bling-layer .bling-sparkle {
+  position: absolute;
+  width: 4px;
+  height: 4px;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.7);
+  box-shadow: 0 0 8px rgba(212, 175, 55, 0.6);
+  animation: sparkle-bling 2s ease-in-out infinite;
+  pointer-events: none;
+}
+.card-cover-bling-layer .bling-sparkle:nth-child(1) { left: 10%; top: 15%; animation-delay: 0s; }
+.card-cover-bling-layer .bling-sparkle:nth-child(2) { left: 25%; top: 8%; animation-delay: 0.3s; width: 3px; height: 3px; }
+.card-cover-bling-layer .bling-sparkle:nth-child(3) { right: 15%; top: 20%; animation-delay: 0.6s; }
+.card-cover-bling-layer .bling-sparkle:nth-child(4) { right: 8%; top: 12%; animation-delay: 0.2s; width: 3px; height: 3px; }
+.card-cover-bling-layer .bling-sparkle:nth-child(5) { left: 12%; bottom: 25%; animation-delay: 0.5s; }
+.card-cover-bling-layer .bling-sparkle:nth-child(6) { right: 20%; bottom: 18%; animation-delay: 0.4s; width: 3px; height: 3px; }
+.card-cover-bling-layer .bling-sparkle:nth-child(7) { left: 50%; top: 5%; animation-delay: 0.7s; }
+.card-cover-bling-layer .bling-sparkle:nth-child(8) { right: 35%; bottom: 30%; animation-delay: 0.1s; }
+.card-cover-bling-layer .bling-sparkle:nth-child(9) { left: 40%; bottom: 12%; animation-delay: 0.8s; width: 3px; height: 3px; }
+
+/* Bling bling cho chữ nền toàn web – animation nhấp nháy nhẹ, thấy rõ trên nền tối */
+@keyframes bling-text-pulse {
+  0%, 100% { opacity: 0.85; }
+  50% { opacity: 1; }
+}
+.bg-bling-text,
+.bg-bling-text span {
+  animation: bling-text-pulse 4s ease-in-out infinite;
+}
+
+/* Sparkle bling toàn site – chấm sáng nhỏ */
+@keyframes site-sparkle {
+  0%, 100% { opacity: 0.2; transform: scale(0.9); }
+  50% { opacity: 0.5; transform: scale(1.1); }
+}
+.site-bling-sparkle {
+  position: absolute;
+  width: 6px;
+  height: 6px;
+  margin-left: -3px;
+  margin-top: -3px;
+  border-radius: 50%;
+  background: rgba(212, 175, 55, 0.6);
+  box-shadow: 0 0 10px rgba(212, 175, 55, 0.4);
+  pointer-events: none;
+  animation: site-sparkle 2.5s ease-in-out infinite;
 }
 
 * {

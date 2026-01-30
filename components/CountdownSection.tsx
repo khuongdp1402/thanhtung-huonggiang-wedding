@@ -79,7 +79,7 @@ export function CountdownSection({ data }: CountdownSectionProps) {
             <Reveal x={-30}>
               <div className="relative aspect-[4/5] sm:aspect-square rounded-t-full overflow-hidden border-[8px] border-white shadow-2xl transition-transform hover:scale-[1.01] duration-700">
                 <img
-                  src="https://images.unsplash.com/photo-1583939003579-730e3918a45a?auto=format&fit=crop&q=80&w=1600"
+                  src="/images/z7481583509453_9b098e98c846243154f64e1e5eb8e430.jpg?auto=format&fit=crop&q=80&w=1600"
                   alt="Together"
                   className="w-full h-full object-cover scale-105"
                 />

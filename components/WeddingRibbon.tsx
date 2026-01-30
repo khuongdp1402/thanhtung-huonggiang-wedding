@@ -13,10 +13,10 @@ const RIBBON_CONTENT = [
 
 export function WeddingRibbon() {
     const [activeText, setActiveText] = useState(RIBBON_CONTENT[0].text);
-    const { scrollY } = useScroll();
+    const { scrollYProgress } = useScroll();
 
-    // Gentle parallax effect on scroll
-    const ribbonY = useTransform(scrollY, [0, 5000], [0, -100]);
+    // Parallax: lên khi scroll, nhưng cuối page hạ lại để không bị che phần trên (con dấu)
+    const ribbonY = useTransform(scrollYProgress, [0, 0.5, 0.8, 1], [0, -85, -85, 0]);
     const smoothY = useSpring(ribbonY, { stiffness: 50, damping: 20 });
 
     useEffect(() => {
@@ -42,10 +42,10 @@ export function WeddingRibbon() {
     }, []);
 
     return (
-        <div className="fixed left-4 sm:left-8 top-0 h-screen w-12 sm:w-16 z-50 pointer-events-none hidden md:flex items-center justify-center">
+        <div className="fixed left-4 sm:left-8 top-0 h-screen w-12 sm:w-16 z-50 pointer-events-none hidden md:flex items-center justify-center overflow-hidden">
             <motion.div
                 style={{ y: smoothY }}
-                className="relative h-[85vh] w-full flex items-center justify-center"
+                className="relative h-[85vh] w-full flex items-center justify-center overflow-hidden"
             >
                 {/* The Ribbon Body - SVG for organic soft shape */}
                 <svg
@@ -97,10 +97,10 @@ export function WeddingRibbon() {
                 <div className="absolute left-0 top-0 w-[2px] h-full bg-gradient-to-b from-transparent via-gold/40 to-transparent" />
                 <div className="absolute right-0 top-0 w-[1px] h-full bg-gradient-to-b from-transparent via-gold/20 to-transparent" />
 
-                {/* Vertical Text Content */}
-                <div className="relative z-10 flex flex-col items-center justify-center h-full">
+                {/* Vertical Text Content - không scroll */}
+                <div className="relative z-10 flex flex-col items-center justify-center h-full overflow-hidden">
                     <div
-                        className="whitespace-nowrap font-serif text-white/90 text-sm sm:text-base tracking-[0.4em] uppercase"
+                        className="whitespace-nowrap font-serif text-white/90 text-sm sm:text-base tracking-[0.4em] uppercase overflow-hidden"
                         style={{ writingMode: 'vertical-rl', transform: 'rotate(180deg)' }}
                     >
                         <AnimatePresence mode="wait">
@@ -118,11 +118,9 @@ export function WeddingRibbon() {
                     </div>
                 </div>
 
-                {/* Decorative Bow/Seal at top */}
-                <div className="absolute top-0 left-1/2 -translate-x-1/2 -translate-y-1/2 w-10 h-10 bg-gold rounded-full flex items-center justify-center shadow-lg border-2 border-burgundy">
-                    <div className="w-6 h-6 border border-burgundy/20 rounded-full flex items-center justify-center">
-                        <span className="text-[10px] text-burgundy font-bold">囍</span>
-                    </div>
+                {/* Con dấu – đặt hẳn trong khung để không bị cắt nửa */}
+                <div className="absolute top-5 left-1/2 -translate-x-1/2 w-10 h-10 bg-white rounded-full flex items-center justify-center shadow-lg border-2 border-burgundy overflow-hidden p-1 z-20">
+                    <img src="/images/logo.png" alt="Logo" width={32} height={32} className="w-8 h-8 object-contain" />
                 </div>
             </motion.div>
         </div>

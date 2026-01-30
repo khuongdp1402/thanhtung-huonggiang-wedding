@@ -69,7 +69,7 @@ export function HeroSection({
               everything to us.
             </p>
             <a
-              href="#rsvp"
+              href="#loi-chuc"
               className="inline-flex items-center gap-2 rounded-full border border-gold/60 bg-white/5 px-7 py-2.5 text-xs sm:text-sm uppercase tracking-[0.28em] text-gold hover:bg-gold/10 transition-colors"
             >
               RSVP TO CELEBRATE

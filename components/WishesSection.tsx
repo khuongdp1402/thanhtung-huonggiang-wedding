@@ -145,15 +145,17 @@ export function WishesSection() {
                       <div className="flex gap-4 mt-2">
                         <button
                           onClick={() => setAttendance("yes")}
-                          className={`flex-1 py-4 rounded-2xl border transition-all text-base font-medium ${attendance === "yes" ? "bg-burgundy text-white border-burgundy shadow-lg" : "bg-white/50 border-gold/10 text-ink/60 hover:border-burgundy/30"}`}
+                          className={`flex-1 py-4 rounded-2xl border transition-all text-base font-medium text-center flex flex-col items-center gap-0.5 ${attendance === "yes" ? "bg-burgundy text-white border-burgundy shadow-lg" : "bg-white/50 border-gold/10 text-ink/60 hover:border-burgundy/30"}`}
                         >
-                          Chắc chắn rồi! 🥂
+                          <span className="block">Chắc chắn</span>
+                          <span className="block"><span className="align-middle">rồi</span> <span className="text-lg align-middle" aria-hidden>🥂</span></span>
                         </button>
                         <button
                           onClick={() => setAttendance("no")}
-                          className={`flex-1 py-4 rounded-2xl border transition-all text-base font-medium ${attendance === "no" ? "bg-burgundy text-white border-burgundy shadow-lg" : "bg-white/50 border-gold/10 text-ink/60 hover:border-burgundy/30"}`}
+                          className={`flex-1 py-4 rounded-2xl border transition-all text-base font-medium text-center flex flex-col items-center gap-0.5 ${attendance === "no" ? "bg-burgundy text-white border-burgundy shadow-lg" : "bg-white/50 border-gold/10 text-ink/60 hover:border-burgundy/30"}`}
                         >
-                          Rất tiếc, mình bận... 💐
+                          <span className="block">Rất tiếc, mình</span>
+                          <span className="block"><span className="align-middle">bận</span> <span className="text-lg align-middle" aria-hidden>💐</span></span>
                         </button>
                       </div>
                     </label>

@@ -14,8 +14,8 @@ export function MobileRedSeal({ data }: MobileRedSealProps) {
 
     return (
         <>
-            {/* The Seal Button – xếp dọc với nút nhạc (cùng trục X, cao hơn một chút) */}
-            <div className="fixed bottom-24 right-6 z-[60] md:hidden">
+            {/* Con dấu chữ Hỷ – ẩn trên mobile theo yêu cầu */}
+            <div className="fixed bottom-24 right-6 z-[60] hidden md:block">
                 <motion.button
                     whileTap={{ scale: 0.85 }}
                     animate={{
@@ -28,8 +28,8 @@ export function MobileRedSeal({ data }: MobileRedSealProps) {
                     onClick={() => setIsOpen(!isOpen)}
                     className="relative w-16 h-16 rounded-full bg-burgundy shadow-[0_8px_20px_rgba(128,0,32,0.4)] border-2 border-gold/30 flex items-center justify-center group overflow-hidden"
                 >
-                    {/* Character 喜 in center */}
-                    <span className="text-white text-3xl font-serif relative z-10 transition-transform group-active:scale-95 select-none">喜</span>
+                    {/* Logo (nền trắng) – kích thước rõ ràng */}
+                    <img src="/images/logo.png" alt="Logo" width={48} height={48} className="w-12 h-12 object-contain p-1 relative z-10 transition-transform group-active:scale-95 select-none" />
 
                     {/* Wax Texture / Shine */}
                     <div className="absolute inset-0 bg-gradient-to-tr from-transparent via-white/10 to-transparent pointer-events-none" />

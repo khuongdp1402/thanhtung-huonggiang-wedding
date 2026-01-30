@@ -93,7 +93,7 @@ export function GallerySection({ data }: GallerySectionProps) {
         </div>
 
         <Reveal delay={0.1}>
-          <div className="mt-32 text-center text-sm text-ink/50 italic font-medium">
+          <div className="mt-16 text-center text-base sm:text-lg text-ink/60 italic font-medium">
             Tình yêu không chỉ là nhìn nhau, mà là cùng nhau nhìn về một hướng.
           </div>
         </Reveal>

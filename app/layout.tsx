@@ -1,11 +1,10 @@
 import type { Metadata } from "next";
+import { Suspense } from "react";
 import "./globals.css";
 import { Cormorant_Garamond, Great_Vibes } from "next/font/google";
 import AnimatedBackground from "../components/AnimatedBackground";
 import { WeddingRibbon } from "../components/WeddingRibbon";
 import { WeddingCardOpening } from "../components/WeddingCardOpening";
-import { MobileRedSeal } from "../components/MobileRedSeal";
-import { invitation } from "../lib/invitation";
 
 const serif = Cormorant_Garamond({
   subsets: ["latin"],
@@ -24,6 +23,17 @@ const script = Great_Vibes({
 export const metadata: Metadata = {
   title: "Thiệp mời Thanh Tùng - Hương Giang | 13.02.2026",
   description: "Trân trọng kính mời bạn đến chung vui cùng gia đình chúng mình.",
+  icons: {
+    icon: "/images/logo_text.png",
+    apple: "/images/logo_text.png",
+  },
+};
+
+export const viewport = {
+  width: "device-width",
+  initialScale: 1,
+  viewportFit: "cover",
+  themeColor: "#0a0a0a",
 };
 
 export default function RootLayout({
@@ -34,13 +44,14 @@ export default function RootLayout({
   return (
     <html lang="vi">
       <body
-        className={`${serif.variable} ${script.variable} font-serif antialiased bg-cream-light text-ink`}
+        className={`${serif.variable} ${script.variable} font-serif antialiased bg-[#0a0a0a] text-ink`}
       >
-        <div className="min-h-screen relative overflow-hidden">
+        <div className="min-h-screen min-h-[100dvh] relative overflow-hidden">
+          <Suspense fallback={null}>
           <WeddingCardOpening />
+        </Suspense>
           <AnimatedBackground />
           <WeddingRibbon />
-          <MobileRedSeal data={invitation} />
           <div className="relative z-10">{children}</div>
         </div>
       </body>

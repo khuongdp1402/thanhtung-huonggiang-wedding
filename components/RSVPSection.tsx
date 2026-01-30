@@ -95,7 +95,9 @@ export function RSVPSection() {
                 <p className="text-lg font-serif text-ink-dark italic">
                   {message}
                 </p>
-                <div className="mt-4 text-burgundy font-serif font-bold text-xl tracking-[0.2em]">囍</div>
+                <div className="mt-4 flex justify-center">
+                  <img src="/images/logo.png" alt="Logo" width={80} height={40} className="h-10 w-20 object-contain" />
+                </div>
               </motion.div>
             )}
           </div>

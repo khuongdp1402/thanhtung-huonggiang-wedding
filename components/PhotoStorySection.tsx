@@ -4,10 +4,10 @@ import { motion } from "framer-motion";
 import { SectionWrapper } from "./SectionWrapper";
 
 const photos = [
-  { src: "/story-1.jpg", caption: "The first glance" },
-  { src: "/story-2.jpg", caption: "City lights" },
-  { src: "/story-3.jpg", caption: "Quiet sunsets" },
-  { src: "/story-4.jpg", caption: "Our laughter" }
+  { src: "/images/z7481584607328_c9e58e9bbed1d112b3e49b082ecdc8fb.jpg", caption: "The first glance" },
+  { src: "/images/z7481584990162_737432ce6ed364dd589a63b91f2193ae.jpg", caption: "City lights" },
+  { src: "/images/z7481585343579_3930a96148bb262932c18954629fdfb1.jpg", caption: "Quiet sunsets" },
+  { src: "/images/z7481585541533_11d8b7ae067a0149ffec4e57e96fe90b.jpg", caption: "Our laughter" }
 ];
 
 export function PhotoStorySection() {
