@@ -87,14 +87,13 @@ export function InvitationHeaderSection({ data }: InvitationHeaderSectionProps) 
       <div className="hidden lg:flex min-h-screen items-center justify-center px-8 py-14 bg-burgundy">
         <div className="w-full max-w-5xl overflow-hidden rounded-[40px] border border-gold/25 shadow-2xl relative">
           <div className="flex min-h-[68vh] relative">
-            {/* Ảnh bên trái – overlay đen nhẹ */}
+            {/* Ảnh bên trái – không overlay */}
             <div className="w-[52%] min-w-0 relative shrink-0">
               <img
                 src="/images/z7481584607328_c9e58e9bbed1d112b3e49b082ecdc8fb.jpg"
                 alt="Wedding Background"
                 className="w-full h-full object-cover object-center"
               />
-              <div className="absolute inset-0 bg-black/25 pointer-events-none" aria-hidden />
             </div>
 
             {/* Panel phải nền tối – chữ vàng, đủ rộng để không mất chữ */}
