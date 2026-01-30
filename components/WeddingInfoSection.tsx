@@ -67,7 +67,7 @@ export function WeddingInfoSection({ data }: WeddingInfoSectionProps) {
                   <img src="/images/z7481585343579_3930a96148bb262932c18954629fdfb1.jpg?auto=format&fit=crop&q=80&w=600" alt="Wedding 1" className="w-full h-full object-cover" />
                 </div>
                 <div className="absolute top-10 right-0 w-48 h-64 rounded-2xl overflow-hidden shadow-2xl border-4 border-white rotate-6 z-10 transition-transform hover:z-20 hover:scale-105 duration-500">
-                  <img src="/images/codau.jpg?auto=format&fit=crop&q=80&w=600" alt="Wedding 2" className="w-full h-full object-cover" />
+                  <img src="/images/z7481583702213_89ab3ded468fac26280cd38933981037.jpg?auto=format&fit=crop&q=80&w=600" alt="Wedding 2" className="w-full h-full object-cover" />
                 </div>
               </div>
 
