@@ -5,11 +5,15 @@ import { useState, useEffect } from "react";
 import { useSearchParams } from "next/navigation";
 import { Heart } from "lucide-react";
 import { getInviteeFromSearchParams } from "../lib/invitee";
+import { useMode } from "../lib/mode-context";
+import { invitation } from "../lib/invitation";
 
 export function WeddingCardOpening() {
     const [isOpen, setIsOpen] = useState(false);
     const [displayName, setDisplayName] = useState<string | null>(null);
     const searchParams = useSearchParams();
+    const { mode } = useMode();
+    const isBrideMode = mode === "bride";
 
     useEffect(() => {
         const { inviteeLabel, hasInvitee } = getInviteeFromSearchParams(searchParams);
@@ -103,17 +107,21 @@ export function WeddingCardOpening() {
                                     className="relative z-10 shrink-0"
                                 >
                                     {displayName && (
-                                        <p className="text-burgundy/90 text-sm sm:text-base font-serif font-bold mb-3">
-                                            Kính gửi: <span className="font-bold text-burgundy">{displayName}</span>
+                                        <p className="text-burgundy/90 text-sm sm:text-base font-serif mb-3">
+                                            Kính gửi: <span className="font-black text-burgundy">{displayName}</span>
                                         </p>
                                     )}
                                     <p className="text-burgundy text-sm sm:text-base tracking-[0.4em] uppercase font-bold mb-4">Trân trọng báo tin</p>
                                     <div className="h-px w-24 bg-gold/40 mx-auto mb-6" />
 
                                     <div className="mb-8 space-y-2">
-                                        <p className="text-3xl sm:text-4xl font-script text-burgundy font-bold">Thanh Tùng</p>
+                                        <p className="text-3xl sm:text-4xl font-script text-burgundy font-bold">
+                                            {isBrideMode ? invitation.bride.name : invitation.groom.name}
+                                        </p>
                                         <p className="text-xl sm:text-2xl font-script text-gold">&</p>
-                                        <p className="text-3xl sm:text-4xl font-script text-burgundy font-bold">Hương Giang</p>
+                                        <p className="text-3xl sm:text-4xl font-script text-burgundy font-bold">
+                                            {isBrideMode ? invitation.groom.name : invitation.bride.name}
+                                        </p>
                                     </div>
 
                                     <h2 className="text-lg sm:text-xl font-serif text-ink-dark/60 italic mb-8">

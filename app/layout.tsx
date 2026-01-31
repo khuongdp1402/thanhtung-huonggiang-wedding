@@ -5,6 +5,7 @@ import { Cormorant_Garamond, Great_Vibes } from "next/font/google";
 import AnimatedBackground from "../components/AnimatedBackground";
 import { WeddingRibbon } from "../components/WeddingRibbon";
 import { WeddingCardOpening } from "../components/WeddingCardOpening";
+import { ModeProvider } from "../lib/mode-context";
 
 const serif = Cormorant_Garamond({
   subsets: ["latin"],
@@ -46,14 +47,16 @@ export default function RootLayout({
       <body
         className={`${serif.variable} ${script.variable} font-serif antialiased bg-[#0a0a0a] text-ink`}
       >
-        <div className="min-h-screen min-h-[100dvh] relative overflow-hidden">
-          <Suspense fallback={null}>
-          <WeddingCardOpening />
-        </Suspense>
-          <AnimatedBackground />
-          <WeddingRibbon />
-          <div className="relative z-10">{children}</div>
-        </div>
+        <ModeProvider>
+          <div className="min-h-screen min-h-[100dvh] relative overflow-hidden">
+            <Suspense fallback={null}>
+            <WeddingCardOpening />
+          </Suspense>
+            <AnimatedBackground />
+            <WeddingRibbon />
+            <div className="relative z-10">{children}</div>
+          </div>
+        </ModeProvider>
       </body>
     </html>
   );

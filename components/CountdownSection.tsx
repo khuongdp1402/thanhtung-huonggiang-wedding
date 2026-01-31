@@ -5,6 +5,7 @@ import { AnimatePresence, motion } from "framer-motion";
 import type { InvitationData } from "../lib/invitation";
 import { Section } from "./Section";
 import { Reveal } from "./Reveal";
+import { useMode } from "../lib/mode-context";
 
 type CountdownSectionProps = {
   data: InvitationData;
@@ -55,7 +56,9 @@ function NumberFlip({ value }: { value: string }) {
 }
 
 export function CountdownSection({ data }: CountdownSectionProps) {
-  const targetMs = useMemo(() => new Date(data.ceremony.startsAtISO).getTime(), [data.ceremony.startsAtISO]);
+  const { mode } = useMode();
+  const ceremony = mode === "bride" ? data.brideCeremony : data.groomCeremony;
+  const targetMs = useMemo(() => new Date(ceremony.startsAtISO).getTime(), [ceremony.startsAtISO]);
   const [parts, setParts] = useState<Parts>(() => getParts(targetMs));
 
   useEffect(() => {
@@ -97,7 +100,7 @@ export function CountdownSection({ data }: CountdownSectionProps) {
                 </h2>
                 <div className="gold-divider w-24 lg:mx-0 opacity-60" />
                 <p className="mt-8 text-4xl sm:text-5xl font-serif text-burgundy font-bold tracking-tight">
-                  {data.ceremony.solarDateLabel}
+                  {ceremony.solarDateLabel}
                 </p>
               </div>
             </Reveal>

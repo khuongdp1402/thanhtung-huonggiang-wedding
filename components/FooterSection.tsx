@@ -1,12 +1,17 @@
+"use client";
+
 import type { InvitationData } from "../lib/invitation";
 import { Section } from "./Section";
 import { Reveal } from "./Reveal";
+import { useMode } from "../lib/mode-context";
 
 type FooterSectionProps = {
   data: InvitationData;
 };
 
 export function FooterSection({ data }: FooterSectionProps) {
+  const { mode } = useMode();
+  const isBrideMode = mode === "bride";
   return (
     <Section className="bg-paper pb-16">
       <Reveal>
@@ -16,7 +21,7 @@ export function FooterSection({ data }: FooterSectionProps) {
             Cảm ơn bạn đã dành thời gian cho ngày trọng đại của
           </p>
           <p className="mt-2 text-2xl sm:text-3xl lg:text-4xl font-script text-burgundy font-bold whitespace-nowrap">
-            {data.groom.name} &amp; {data.bride.name}
+            {isBrideMode ? `${data.bride.name} & ${data.groom.name}` : `${data.groom.name} & ${data.bride.name}`}
           </p>
           <p className="mt-4 text-sm sm:text-base tracking-[0.32em] uppercase text-ink/70 font-semibold">Hẹn gặp bạn</p>
         </div>

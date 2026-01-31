@@ -6,6 +6,7 @@ import type { InvitationData } from "../lib/invitation";
 import { getInviteeFromSearchParams } from "../lib/invitee";
 import { Section } from "./Section";
 import { Reveal } from "./Reveal";
+import { useMode } from "../lib/mode-context";
 
 type QuoteSectionProps = {
   data: InvitationData;
@@ -14,6 +15,26 @@ type QuoteSectionProps = {
 export function QuoteSection({ data }: QuoteSectionProps) {
   const searchParams = useSearchParams();
   const { inviteeLabel, salutationOnly } = getInviteeFromSearchParams(searchParams);
+  const { mode } = useMode();
+  const isBrideMode = mode === "bride";
+  
+  // Bride's photo: codau.jpg
+  // Groom's photo: z7481582936017
+  const leftPhoto = isBrideMode 
+    ? "/images/codau.jpg?auto=format&fit=crop&q=80&w=600"
+    : "/images/z7481582936017_fb626fce2d38129c4b01d143acd905a5.jpg?auto=format&fit=crop&q=80&w=600";
+  
+  const rightPhoto = isBrideMode
+    ? "/images/z7481582936017_fb626fce2d38129c4b01d143acd905a5.jpg?auto=format&fit=crop&q=80&w=600"
+    : "/images/codau.jpg?auto=format&fit=crop&q=80&w=600";
+  
+  const leftPhotoDesktop = isBrideMode
+    ? "/images/codau.jpg?auto=format&fit=crop&q=80&w=1200"
+    : "/images/z7481582936017_fb626fce2d38129c4b01d143acd905a5.jpg?auto=format&fit=crop&q=80&w=1200";
+  
+  const rightPhotoDesktop = isBrideMode
+    ? "/images/z7481582936017_fb626fce2d38129c4b01d143acd905a5.jpg?auto=format&fit=crop&q=80&w=1200"
+    : "/images/codau.jpg?auto=format&fit=crop&q=80&w=1200";
 
   return (
     <Section className="relative sm:py-40 overflow-hidden">
@@ -23,8 +44,8 @@ export function QuoteSection({ data }: QuoteSectionProps) {
           <Reveal x={-20}>
             <div className="relative aspect-[3/4] rounded-2xl overflow-hidden border-[4px] border-white shadow-xl rotate-[-3deg]">
               <img
-                src="/images/z7481582936017_fb626fce2d38129c4b01d143acd905a5.jpg?auto=format&fit=crop&q=80&w=600"
-                alt="Ảnh cưới"
+                src={leftPhoto}
+                alt={isBrideMode ? "Cô dâu" : "Chú rể"}
                 className="w-full h-full object-cover"
               />
             </div>
@@ -32,8 +53,8 @@ export function QuoteSection({ data }: QuoteSectionProps) {
           <Reveal x={20}>
             <div className="relative aspect-[3/4] rounded-2xl overflow-hidden border-[4px] border-white shadow-xl rotate-[3deg] mt-6">
               <img
-                src="/images/codau.jpg?auto=format&fit=crop&q=80&w=600"
-                alt="Cô dâu"
+                src={rightPhoto}
+                alt={isBrideMode ? "Chú rể" : "Cô dâu"}
                 className="w-full h-full object-cover"
               />
             </div>
@@ -46,8 +67,8 @@ export function QuoteSection({ data }: QuoteSectionProps) {
             <Reveal x={-40}>
               <div className="relative aspect-[3/4] rounded-full overflow-hidden border-[6px] border-white shadow-2xl rotate-[-2deg] grayscale-[0.2] hover:grayscale-0 transition-all duration-700">
                 <img
-                  src="/images/z7481582936017_fb626fce2d38129c4b01d143acd905a5.jpg?auto=format&fit=crop&q=80&w=1200"
-                  alt="Ảnh cưới"
+                  src={leftPhotoDesktop}
+                  alt={isBrideMode ? "Cô dâu" : "Chú rể"}
                   className="w-full h-full object-cover scale-110"
                 />
               </div>
@@ -78,8 +99,8 @@ export function QuoteSection({ data }: QuoteSectionProps) {
             <Reveal x={40}>
               <div className="relative aspect-[3/4] rounded-t-full overflow-hidden border-[6px] border-white shadow-2xl rotate-[2deg] grayscale-[0.2] hover:grayscale-0 transition-all duration-700 mt-12">
                 <img
-                  src="/images/codau.jpg?auto=format&fit=crop&q=80&w=1200"
-                  alt="Cô dâu"
+                  src={rightPhotoDesktop}
+                  alt={isBrideMode ? "Chú rể" : "Cô dâu"}
                   className="w-full h-full object-cover scale-110"
                 />
               </div>

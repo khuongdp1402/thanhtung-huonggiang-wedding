@@ -4,23 +4,29 @@ import { Heart, Sparkles } from "lucide-react";
 import type { InvitationData } from "../lib/invitation";
 import { Section } from "./Section";
 import { Reveal } from "./Reveal";
+import { useMode } from "../lib/mode-context";
 
 type InvitationHeaderSectionProps = {
   data: InvitationData;
 };
 
 export function InvitationHeaderSection({ data }: InvitationHeaderSectionProps) {
+  const { mode } = useMode();
+  const isBrideMode = mode === "bride";
+  
   const namesRow = (
     <div className="flex items-center justify-between gap-4 w-full">
       <h1 className="text-2xl sm:text-4xl lg:text-5xl font-script text-gold font-bold leading-tight drop-shadow-sm shrink-0">
-        {data.groom.name}
+        {isBrideMode ? data.bride.name : data.groom.name}
       </h1>
       <h1 className="text-2xl sm:text-4xl lg:text-5xl font-script text-gold font-bold leading-tight drop-shadow-sm shrink-0">
-        {data.bride.name}
+        {isBrideMode ? data.groom.name : data.bride.name}
       </h1>
     </div>
   );
 
+  const ceremony = isBrideMode ? data.brideCeremony : data.groomCeremony;
+  
   const dateBlock = (
     <div className="flex flex-col items-center gap-2 sm:gap-4 w-full">
       <p className="text-gold text-[10px] sm:text-xs tracking-[0.25em] uppercase font-semibold">
@@ -29,9 +35,9 @@ export function InvitationHeaderSection({ data }: InvitationHeaderSectionProps) 
       <div className="h-px w-16 sm:w-24 bg-gold mx-auto" aria-hidden />
       <div className="px-4 sm:px-6 py-2.5 sm:py-4 w-full max-w-sm text-center">
         <p className="text-gold text-base sm:text-xl lg:text-2xl font-serif font-bold tracking-wide">
-          {data.ceremony.solarDateLabel}
+          {ceremony.solarDateLabel}
         </p>
-        <p className="text-gold text-xs sm:text-sm font-serif mt-1">{data.ceremony.lunarDateLabel}</p>
+        <p className="text-gold text-xs sm:text-sm font-serif mt-1">{ceremony.lunarDateLabel}</p>
       </div>
     </div>
   );
@@ -62,11 +68,11 @@ export function InvitationHeaderSection({ data }: InvitationHeaderSectionProps) 
               </div>
             </Reveal>
 
-            <Reveal delay={0.1}>
-              <h2 className="text-gold text-[10px] sm:text-xs tracking-[0.35em] uppercase font-bold mb-2 sm:mb-4 text-center">
-                Tân Lang & Tân Nương
-              </h2>
-            </Reveal>
+              <Reveal delay={0.1}>
+                <h2 className="text-gold text-[10px] sm:text-xs tracking-[0.35em] uppercase font-bold mb-2 sm:mb-4 text-center">
+                  {isBrideMode ? "Tân Nương & Tân Lang" : "Tân Lang & Tân Nương"}
+                </h2>
+              </Reveal>
 
             <Reveal delay={0.2} className="mb-4 sm:mb-6">
               {namesRow}
@@ -106,17 +112,17 @@ export function InvitationHeaderSection({ data }: InvitationHeaderSectionProps) 
 
               <Reveal delay={0.1}>
                 <h2 className="text-gold/90 text-xs tracking-[0.4em] uppercase font-bold mb-6 text-center">
-                  Tân Lang & Tân Nương
+                  {isBrideMode ? "Tân Nương & Tân Lang" : "Tân Lang & Tân Nương"}
                 </h2>
               </Reveal>
 
               <Reveal delay={0.2} className="mb-8">
                 <div className="flex items-center justify-between gap-6 w-full min-w-0">
                   <h1 className="text-3xl xl:text-4xl font-script text-gold font-bold leading-tight shrink-0 text-left">
-                    {data.groom.name}
+                    {isBrideMode ? data.bride.name : data.groom.name}
                   </h1>
                   <h1 className="text-3xl xl:text-4xl font-script text-gold font-bold leading-tight shrink-0 text-right">
-                    {data.bride.name}
+                    {isBrideMode ? data.groom.name : data.bride.name}
                   </h1>
                 </div>
               </Reveal>
@@ -129,9 +135,9 @@ export function InvitationHeaderSection({ data }: InvitationHeaderSectionProps) 
                   <div className="h-px w-20 bg-gold/60 mx-auto" aria-hidden />
                   <div className="py-4 w-full max-w-sm text-center">
                     <p className="text-gold text-xl xl:text-2xl font-serif font-bold tracking-wide">
-                      {data.ceremony.solarDateLabel}
+                      {ceremony.solarDateLabel}
                     </p>
-                    <p className="text-gold/80 text-sm font-serif mt-1">{data.ceremony.lunarDateLabel}</p>
+                    <p className="text-gold/80 text-sm font-serif mt-1">{ceremony.lunarDateLabel}</p>
                   </div>
                 </div>
               </Reveal>

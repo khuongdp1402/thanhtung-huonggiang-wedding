@@ -1,4 +1,4 @@
-# Công thức Excel tạo link thiệp mời (có cột Xưng hô)
+# Công thức Excel tạo link thiệp mời (có 2 Mode: Nhà Gái & Nhà Trai)
 
 ## Bố trí cột đề xuất
 
@@ -6,51 +6,104 @@
 |-----|-----------|----------|----------------------------|
 | A   | **Xưng hô** | Anh, Chị, Ông, Bà | Tiền tố xưng hô            |
 | B   | **Tên**   | Khương, Hương   | Tên khách                  |
-| C   | **Link thiệp** | (công thức) | URL dùng để gửi thiệp |
+| C   | **Link Nhà Gái** | (công thức) | URL cho khách bên nhà gái |
+| D   | **Link Nhà Trai** | (công thức) | URL cho khách bên nhà trai |
 
 Dòng 1 dùng làm **tiêu đề**. Dữ liệu khách từ **dòng 2** trở đi.
 
+**Cell E1**: Đặt địa chỉ gốc (ví dụ: `https://your-domain.com`)
+
 ---
 
-## Công thức tạo link thiệp (cột C)
+## Công thức tạo link thiệp
 
-Giả sử **địa chỉ gốc trang thiệp** bạn đặt ở ô **E1** (ví dụ: `https://your-invitation.vercel.app`).
+### 1. Link cho Nhà Gái (Cột C)
 
-**Ô C2** (cho khách đầu tiên):
+**Ô C2:**
 
 ```excel
-=E1&"?"&"salutation="&ENCODEURL(A2)&"&guest="&ENCODEURL(B2)
+=$E$1&"?salutation="&ENCODEURL(A2)&"&guest="&ENCODEURL(B2)&"&mode=nhagai"
 ```
 
-- **A2** = Xưng hô  
-- **B2** = Tên  
-- `ENCODEURL` dùng để mã hóa tiếng Việt/dấu cho URL.
+**Hoặc:**
 
-Kéo fill xuống cho các dòng tiếp theo (C3, C4, ...).
+```excel
+=$E$1&"?salutation="&ENCODEURL(A2)&"&guest="&ENCODEURL(B2)&"&mode=bride"
+```
+
+**Hiển thị:**
+- Lễ Vu Quy
+- Thứ Năm, 12/02/2026
+- Tư Gia Nhà Gái
+- Tân Nương & Tân Lang
 
 ---
 
-## Nếu có ô chứa địa chỉ gốc
+### 2. Link cho Nhà Trai (Cột D)
 
-Ví dụ ô **E1** = `https://your-invitation.vercel.app`
+**Ô D2:**
 
-|   | A      | B      | C (công thức) |
-|---|--------|--------|----------------|
-| 1 | Xưng hô | Tên    | Link thiệp     |
-| 2 | Anh   | Khương | `=E1&"?"&"salutation="&ENCODEURL(A2)&"&guest="&ENCODEURL(B2)` |
-| 3 | Chị   | Hương  | (kéo công thức từ C2)     |
+```excel
+=$E$1&"?salutation="&ENCODEURL(A2)&"&guest="&ENCODEURL(B2)&"&mode=nhatrai"
+```
 
-Kết quả C2 sẽ là:  
-`https://your-invitation.vercel.app?salutation=Anh&guest=Kh%C6%B0%C6%A1ng`
+**Hoặc:**
+
+```excel
+=$E$1&"?salutation="&ENCODEURL(A2)&"&guest="&ENCODEURL(B2)&"&mode=groom"
+```
+
+**Hiển thị:**
+- Lễ Tân Hôn
+- Thứ Sáu, 13/02/2026
+- Tư Gia Nhà Trai
+- Tân Lang & Tân Nương
+
+---
+
+## Ví dụ trong Excel
+
+| | A | B | C (Link Nhà Gái) | D (Link Nhà Trai) |
+|-|---|---|------------------|-------------------|
+| 1 | Xưng hô | Tên | Link Nhà Gái | Link Nhà Trai |
+| 2 | Anh | Khương | `=$E$1&"?salutation="&ENCODEURL(A2)&"&guest="&ENCODEURL(B2)&"&mode=nhagai"` | `=$E$1&"?salutation="&ENCODEURL(A2)&"&guest="&ENCODEURL(B2)&"&mode=nhatrai"` |
+| 3 | Chị | Hương | (kéo từ C2) | (kéo từ D2) |
+
+**Cell E1:** `https://thanhtung-huonggiang.vercel.app`
+
+**Kết quả C2:**  
+```
+https://thanhtung-huonggiang.vercel.app?salutation=Anh&guest=Kh%C6%B0%C6%A1ng&mode=nhagai
+```
+
+**Kết quả D2:**  
+```
+https://thanhtung-huonggiang.vercel.app?salutation=Anh&guest=Kh%C6%B0%C6%A1ng&mode=nhatrai
+```
+
+---
+
+## Cách sử dụng
+
+1. Điền địa chỉ website vào cell **E1**
+2. Copy công thức vào **C2** (nhà gái) và **D2** (nhà trai)
+3. Kéo xuống để áp dụng cho tất cả khách mời
+4. Copy link từ cột C hoặc D để gửi cho khách tương ứng
+
+Kéo fill xuống cho các dòng tiếp theo (C3, C4, D3, D4, ...).
 
 ---
 
 ## Link dạng có thể bấm (HYPERLINK)
 
-Để cột C vừa là link bấm được, vừa hiển thị chữ tùy ý (ví dụ "Mở thiệp"):
-
+### Nhà Gái (Cột C):
 ```excel
-=HYPERLINK(E1&"?"&"salutation="&ENCODEURL(A2)&"&guest="&ENCODEURL(B2); "Mở thiệp")
+=HYPERLINK($E$1&"?salutation="&ENCODEURL(A2)&"&guest="&ENCODEURL(B2)&"&mode=nhagai"; "Mở thiệp Nhà Gái")
+```
+
+### Nhà Trai (Cột D):
+```excel
+=HYPERLINK($E$1&"?salutation="&ENCODEURL(A2)&"&guest="&ENCODEURL(B2)&"&mode=nhatrai"; "Mở thiệp Nhà Trai")
 ```
 
 (Lưu ý: Excel tiếng Việt dùng **dấu chấm phẩy `;`** giữa các tham số.)
@@ -59,16 +112,18 @@ Kết quả C2 sẽ là:
 
 ## Trường hợp chỉ có Tên (không có Xưng hô)
 
-Nếu một số dòng để trống cột A (Xưng hô), link vẫn đúng: trang sẽ chỉ nhận `guest=...` và hiển thị tên không kèm xưng hô.
-
-Nếu muốn **bỏ hẳn** tham số `salutation` khi ô A trống:
-
+### Nhà Gái:
 ```excel
-=E1&"?"&IF(A2=""; "guest="; "salutation="&ENCODEURL(A2)&"&guest=")&ENCODEURL(B2)
+=$E$1&"?"&IF(A2=""; "guest="; "salutation="&ENCODEURL(A2)&"&guest=")&ENCODEURL(B2)&"&mode=nhagai"
 ```
 
-- A trống → URL dạng: `?guest=Khương`  
-- A có "Anh" → URL dạng: `?salutation=Anh&guest=Khương`
+### Nhà Trai:
+```excel
+=$E$1&"?"&IF(A2=""; "guest="; "salutation="&ENCODEURL(A2)&"&guest=")&ENCODEURL(B2)&"&mode=nhatrai"
+```
+
+- A trống → URL dạng: `?guest=Khương&mode=nhagai`  
+- A có "Anh" → URL dạng: `?salutation=Anh&guest=Khương&mode=nhagai`
 
 ---
 

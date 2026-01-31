@@ -38,12 +38,16 @@ export function WishesSection() {
       const response = await fetch(`${GOOGLE_SHEET_URL}?action=getWishes`);
       const data = await response.json();
       if (Array.isArray(data)) {
-        setWishes(data.reverse()); // Show newest first
+        // Sort by createdAt descending (newest first)
+        const sorted = data.sort((a, b) => (b.createdAt || 0) - (a.createdAt || 0));
+        setWishes(sorted);
       }
     } catch (error) {
       console.error("Error fetching wishes:", error);
       // Fallback to local storage if fetch fails
-      setWishes(safeParse(localStorage.getItem(storageKey)));
+      const localWishes = safeParse(localStorage.getItem(storageKey));
+      const sorted = localWishes.sort((a, b) => (b.createdAt || 0) - (a.createdAt || 0));
+      setWishes(sorted);
     }
   }
 
@@ -217,31 +221,44 @@ export function WishesSection() {
                 </div>
               </div>
 
-              {/* Displaying wishes list prominently */}
+              {/* Displaying wishes list prominently with scroll */}
               {wishes.length > 0 && (
                 <div className="mt-16 grid gap-8">
                   <div className="flex items-center gap-4">
                     <div className="h-px flex-1 bg-gold/20" />
-                    <p className="text-[10px] tracking-[0.5em] uppercase text-burgundy font-bold">Lời chúc gần đây</p>
+                    <p className="text-[10px] tracking-[0.5em] uppercase text-burgundy font-bold">
+                      Lời chúc ({wishes.length})
+                    </p>
                     <div className="h-px flex-1 bg-gold/20" />
                   </div>
-                  <div className="grid gap-6">
-                    {wishes.slice(0, 8).map((wish) => (
-                      <motion.div
-                        initial={{ opacity: 0, y: 20 }}
-                        whileInView={{ opacity: 1, y: 0 }}
-                        viewport={{ once: true }}
-                        key={wish.id}
-                        className="rounded-3xl border border-gold/10 bg-white/40 backdrop-blur-md px-10 py-8 shadow-sm border-l-4 border-l-burgundy/40 relative overflow-hidden group hover:bg-white/60 transition-colors"
-                      >
-                        <div className="absolute top-0 right-0 w-24 h-24 bg-gold/[0.03] rounded-full blur-2xl -translate-y-1/2 translate-x-1/2" />
-                        <p className="text-[10px] tracking-[0.3em] uppercase text-burgundy font-bold mb-4">{wish.name}</p>
-                        <p className="text-base sm:text-lg text-ink-dark/80 leading-relaxed font-serif italic relative z-10">
-                          “{wish.message}”
-                        </p>
-                      </motion.div>
-                    ))}
+                  
+                  {/* Scrollable container with max 4 items visible */}
+                  <div className="max-h-[720px] overflow-y-auto pr-2 scroll-smooth" style={{ scrollbarWidth: 'thin', scrollbarColor: '#800020 transparent' }}>
+                    <div className="grid gap-6">
+                      {wishes.map((wish) => (
+                        <motion.div
+                          initial={{ opacity: 0, y: 20 }}
+                          whileInView={{ opacity: 1, y: 0 }}
+                          viewport={{ once: true }}
+                          key={wish.id}
+                          className="rounded-3xl border border-gold/10 bg-white/40 backdrop-blur-md px-10 py-8 shadow-sm border-l-4 border-l-burgundy/40 relative overflow-hidden group hover:bg-white/60 transition-colors"
+                        >
+                          <div className="absolute top-0 right-0 w-24 h-24 bg-gold/[0.03] rounded-full blur-2xl -translate-y-1/2 translate-x-1/2" />
+                          <p className="text-[10px] tracking-[0.3em] uppercase text-burgundy font-bold mb-4">{wish.name}</p>
+                          <p className="text-base sm:text-lg text-ink-dark/80 leading-relaxed font-serif italic relative z-10">
+                            "{wish.message}"
+                          </p>
+                        </motion.div>
+                      ))}
+                    </div>
                   </div>
+                  
+                  {/* Scroll hint for many wishes */}
+                  {wishes.length > 4 && (
+                    <div className="text-center">
+                      <p className="text-xs text-ink/40 italic">Cuộn xuống để xem thêm lời chúc</p>
+                    </div>
+                  )}
                 </div>
               )}
             </div>

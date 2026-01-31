@@ -9,10 +9,12 @@ import { LocationSection } from "../components/LocationSection";
 import { WishesSection } from "../components/WishesSection";
 import { FooterSection } from "../components/FooterSection";
 import { BackgroundMusic } from "../components/BackgroundMusic";
+import { ModeSwitcher } from "../components/ModeSwitcher";
 
-export default function HomePage() {
+function PageContent() {
   return (
-    <main className="bg-paper">
+    <>
+      <ModeSwitcher />
       <Suspense fallback={null}>
         <InvitationHeaderSection data={invitation} />
       </Suspense>
@@ -26,6 +28,16 @@ export default function HomePage() {
       <WishesSection />
       <FooterSection data={invitation} />
       <BackgroundMusic />
+    </>
+  );
+}
+
+export default function HomePage() {
+  return (
+    <main className="bg-paper">
+      <Suspense fallback={<div className="min-h-screen bg-paper" />}>
+        <PageContent />
+      </Suspense>
     </main>
   );
 }

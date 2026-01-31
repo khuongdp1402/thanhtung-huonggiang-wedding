@@ -1,3 +1,16 @@
+export type CeremonyEvent = {
+  title: string;
+  solarDateLabel: string;
+  lunarDateLabel: string;
+  timeLabel: string;
+  receptionTimeLabel: string;
+  venueName: string;
+  address: string;
+  googleMapsUrl: string;
+  googleMapsEmbedUrl: string;
+  startsAtISO: string;
+};
+
 export type InvitationData = {
   groom: {
     name: string;
@@ -13,18 +26,12 @@ export type InvitationData = {
       mother: string;
     };
   };
-  ceremony: {
-    title: string;
-    solarDateLabel: string;
-    lunarDateLabel: string;
-    timeLabel: string;
-    receptionTimeLabel: string;
-    venueName: string;
-    address: string;
-    googleMapsUrl: string;
-    googleMapsEmbedUrl: string;
-    startsAtISO: string;
-  };
+  // Ceremony for groom's home (Vui Quy)
+  groomCeremony: CeremonyEvent;
+  // Ceremony for bride's home (Lễ Tân Hôn)
+  brideCeremony: CeremonyEvent;
+  // Legacy field for backward compatibility
+  ceremony: CeremonyEvent;
   quote: string;
   gallery: Array<{
     src: string;
@@ -65,10 +72,11 @@ export const invitation: InvitationData = {
       mother: "Bà Lê Thị Gái"
     }
   },
-  ceremony: {
+  // Groom's home ceremony (Tân Hôn - chú rể làm lễ tại nhà trai)
+  groomCeremony: {
     title: "Lễ Tân Hôn",
     solarDateLabel: "Thứ Sáu, 13/02/2026",
-    lunarDateLabel: "Nhằm ngày 26 tháng 12 năm Ất Tỵ",
+    lunarDateLabel: "Nhằm ngày 26 tháng Chạp năm Ất Tỵ",
     timeLabel: "11:00",
     receptionTimeLabel: "12:30",
     venueName: "Tư Gia Nhà Trai",
@@ -77,6 +85,34 @@ export const invitation: InvitationData = {
     googleMapsEmbedUrl:
       "https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d15545.922444634283!2d109.012586!3d14.484214!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x316f456c8025547d%3A0x6b490f2095cc606!2zQuG7k25nIFPGoW4sIEhv4aSBOaMahbiwgQsOsbmggxJDhu4tuaCwgVmnhu4d0IE5hbQ!5e0!3m2!1svi!2s!4v1700000000000",
     startsAtISO: "2026-02-13T11:00:00+07:00"
+  },
+  // Bride's home ceremony (Vu Quy - cô dâu về nhà gái)
+  brideCeremony: {
+    title: "Lễ Vu Quy",
+    solarDateLabel: "Thứ Năm, 12/02/2026",
+    lunarDateLabel: "Nhằm ngày 25 tháng Chạp năm Ất Tỵ",
+    timeLabel: "07:00 (13/02)",
+    receptionTimeLabel: "11:00",
+    venueName: "Tư Gia Nhà Gái",
+    address: "Tổ dân phố Phú Thành, An Nhơn Bắc, Gia Lai",
+    googleMapsUrl: "https://maps.app.goo.gl/Sj5LMakgnrV4KwJZ8",
+    googleMapsEmbedUrl:
+      "https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3901.0820449447385!2d108.9936891!3d14.1680556!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x0!2zMTTCsDEwJzA1LjAiTiAxMDjCsDU5JzM3LjMiRQ!5e0!3m2!1svi!2s!4v1700000000000",
+    startsAtISO: "2026-02-12T11:00:00+07:00"
+  },
+  // Default ceremony (bride's home for backward compatibility)
+  ceremony: {
+    title: "Lễ Vu Quy",
+    solarDateLabel: "Thứ Năm, 12/02/2026",
+    lunarDateLabel: "Nhằm ngày 25 tháng Chạp năm Ất Tỵ",
+    timeLabel: "07:00 (13/02)",
+    receptionTimeLabel: "11:00",
+    venueName: "Tư Gia Nhà Gái",
+    address: "Tổ dân phố Phú Thành, An Nhơn Bắc, Gia Lai",
+    googleMapsUrl: "https://maps.app.goo.gl/Sj5LMakgnrV4KwJZ8",
+    googleMapsEmbedUrl:
+      "https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3901.0820449447385!2d108.9936891!3d14.1680556!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x0!2zMTTCsDEwJzA1LjAiTiAxMDjCsDU5JzM3LjMiRQ!5e0!3m2!1svi!2s!4v1700000000000",
+    startsAtISO: "2026-02-12T11:00:00+07:00"
   },
   quote: "Hạnh phúc là có bạn bên cạnh trong ngày trọng đại.",
   gallery: [

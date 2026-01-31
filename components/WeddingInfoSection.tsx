@@ -1,13 +1,23 @@
+"use client";
+
 import { Flower, Heart } from "lucide-react";
 import type { InvitationData } from "../lib/invitation";
 import { Section } from "./Section";
 import { Reveal } from "./Reveal";
+import { useMode } from "../lib/mode-context";
 
 type WeddingInfoSectionProps = {
   data: InvitationData;
 };
 
 export function WeddingInfoSection({ data }: WeddingInfoSectionProps) {
+  const { mode } = useMode();
+  
+  // Select ceremony based on mode
+  const ceremony = mode === "bride" ? data.brideCeremony : data.groomCeremony;
+  
+  // Determine order of information based on mode
+  const isBrideMode = mode === "bride";
   return (
     <Section id="thong-tin" className="relative overflow-hidden bg-white">
       <div className="mx-auto max-w-6xl px-4 relative z-10">
@@ -25,16 +35,22 @@ export function WeddingInfoSection({ data }: WeddingInfoSectionProps) {
 
         {/* Row 1: Parents info horizontally */}
         <div className="grid grid-cols-[1fr_auto_1fr] gap-2 md:gap-12 mb-12 sm:mb-20 px-0 items-center">
-          {/* Nhà trai */}
+          {/* Left side parent info (changes based on mode) */}
           <Reveal x={-20}>
             <div className="space-y-4 text-center border-t border-gold/20 pt-6">
               <div className="flex flex-col items-center gap-2 mb-2">
-                <p className="text-[0.6rem] sm:text-[0.7rem] uppercase tracking-[0.2em] text-burgundy font-bold whitespace-nowrap">Nhà trai</p>
+                <p className="text-[0.6rem] sm:text-[0.7rem] uppercase tracking-[0.2em] text-burgundy font-bold whitespace-nowrap">
+                  {isBrideMode ? "Nhà gái" : "Nhà trai"}
+                </p>
                 <div className="w-1 h-1 bg-gold/40 rounded-full" />
               </div>
               <div className="space-y-0.5">
-                <p className="text-base sm:text-xl text-ink-dark font-serif font-medium leading-relaxed whitespace-nowrap">{data.groom.parents.father}</p>
-                <p className="text-base sm:text-xl text-ink-dark font-serif font-medium leading-relaxed whitespace-nowrap">{data.groom.parents.mother}</p>
+                <p className="text-base sm:text-xl text-ink-dark font-serif font-medium leading-relaxed whitespace-nowrap">
+                  {isBrideMode ? data.bride.parents.father : data.groom.parents.father}
+                </p>
+                <p className="text-base sm:text-xl text-ink-dark font-serif font-medium leading-relaxed whitespace-nowrap">
+                  {isBrideMode ? data.bride.parents.mother : data.groom.parents.mother}
+                </p>
               </div>
             </div>
           </Reveal>
@@ -42,16 +58,22 @@ export function WeddingInfoSection({ data }: WeddingInfoSectionProps) {
           {/* Divider */}
           <div className="h-24 w-px bg-gold/20 mx-auto" />
 
-          {/* Nhà gái */}
+          {/* Right side parent info (changes based on mode) */}
           <Reveal x={20}>
             <div className="space-y-4 text-center border-t border-gold/20 pt-6">
               <div className="flex flex-col items-center gap-2 mb-2">
-                <p className="text-[0.6rem] sm:text-[0.7rem] uppercase tracking-[0.2em] text-burgundy font-bold whitespace-nowrap">Nhà gái</p>
+                <p className="text-[0.6rem] sm:text-[0.7rem] uppercase tracking-[0.2em] text-burgundy font-bold whitespace-nowrap">
+                  {isBrideMode ? "Nhà trai" : "Nhà gái"}
+                </p>
                 <div className="w-1 h-1 bg-gold/40 rounded-full" />
               </div>
               <div className="space-y-0.5">
-                <p className="text-base sm:text-xl text-ink-dark font-serif font-medium leading-relaxed whitespace-nowrap">{data.bride.parents.father}</p>
-                <p className="text-base sm:text-xl text-ink-dark font-serif font-medium leading-relaxed whitespace-nowrap">{data.bride.parents.mother}</p>
+                <p className="text-base sm:text-xl text-ink-dark font-serif font-medium leading-relaxed whitespace-nowrap">
+                  {isBrideMode ? data.groom.parents.father : data.bride.parents.father}
+                </p>
+                <p className="text-base sm:text-xl text-ink-dark font-serif font-medium leading-relaxed whitespace-nowrap">
+                  {isBrideMode ? data.groom.parents.mother : data.bride.parents.mother}
+                </p>
               </div>
             </div>
           </Reveal>
@@ -63,32 +85,48 @@ export function WeddingInfoSection({ data }: WeddingInfoSectionProps) {
             <div className="text-center space-y-6 relative">
               {/* Overlapping Images Style */}
               <div className="relative h-64 sm:h-80 mb-8 mx-auto w-full max-w-md">
+                {/* Left image (changes based on mode) */}
                 <div className="absolute top-0 left-0 w-48 h-64 rounded-2xl overflow-hidden shadow-2xl border-4 border-white -rotate-6 z-0 transition-transform hover:z-20 hover:scale-105 duration-500">
-                  <img src="/images/z7481585343579_3930a96148bb262932c18954629fdfb1.jpg?auto=format&fit=crop&q=80&w=600" alt="Wedding 1" className="w-full h-full object-cover" />
+                  <img 
+                    src={isBrideMode 
+                      ? "/images/z7481583702213_89ab3ded468fac26280cd38933981037.jpg?auto=format&fit=crop&q=80&w=600"
+                      : "/images/z7481585343579_3930a96148bb262932c18954629fdfb1.jpg?auto=format&fit=crop&q=80&w=600"
+                    } 
+                    alt={isBrideMode ? "Cô dâu" : "Chú rể"} 
+                    className="w-full h-full object-cover" 
+                  />
                 </div>
+                {/* Right image (changes based on mode) */}
                 <div className="absolute top-10 right-0 w-48 h-64 rounded-2xl overflow-hidden shadow-2xl border-4 border-white rotate-6 z-10 transition-transform hover:z-20 hover:scale-105 duration-500">
-                  <img src="/images/z7481583702213_89ab3ded468fac26280cd38933981037.jpg?auto=format&fit=crop&q=80&w=600" alt="Wedding 2" className="w-full h-full object-cover" />
+                  <img 
+                    src={isBrideMode 
+                      ? "/images/z7481585343579_3930a96148bb262932c18954629fdfb1.jpg?auto=format&fit=crop&q=80&w=600"
+                      : "/images/z7481583702213_89ab3ded468fac26280cd38933981037.jpg?auto=format&fit=crop&q=80&w=600"
+                    } 
+                    alt={isBrideMode ? "Chú rể" : "Cô dâu"} 
+                    className="w-full h-full object-cover" 
+                  />
                 </div>
               </div>
 
               <div className="space-y-5">
                 <div className="flex flex-col gap-3 w-full max-w-4xl mx-auto">
-                  {/* Dòng 1: Chú rể – căn trái */}
+                  {/* First name (left aligned) - changes based on mode */}
                   <div className="text-left">
                     <span className="text-3xl sm:text-5xl lg:text-6xl font-script text-burgundy font-bold leading-relaxed drop-shadow-sm">
-                      {data.groom.name}
+                      {isBrideMode ? data.bride.name : data.groom.name}
                     </span>
                     <span className="block text-base sm:text-lg font-serif text-ink-dark font-bold tracking-[0.2em] uppercase mt-1">
-                      Trưởng Nam
+                      {isBrideMode ? "Ái Nữ" : "Trưởng Nam"}
                     </span>
                   </div>
-                  {/* Dòng 2: Cô dâu – căn phải */}
+                  {/* Second name (right aligned) - changes based on mode */}
                   <div className="text-right">
                     <span className="text-3xl sm:text-5xl lg:text-6xl font-script text-burgundy font-bold leading-relaxed drop-shadow-sm">
-                      {data.bride.name}
+                      {isBrideMode ? data.groom.name : data.bride.name}
                     </span>
                     <span className="block text-base sm:text-lg font-serif text-ink-dark font-bold tracking-[0.2em] uppercase mt-1">
-                      Ái Nữ
+                      {isBrideMode ? "Trưởng Nam" : "Ái Nữ"}
                     </span>
                   </div>
                 </div>
@@ -96,24 +134,31 @@ export function WeddingInfoSection({ data }: WeddingInfoSectionProps) {
                 <div className="gold-divider w-32 mx-auto opacity-60" />
 
                 <div className="space-y-4 mt-4">
+                  {/* Ceremony title */}
+                  <div className="mb-4">
+                    <p className="text-2xl sm:text-3xl font-script text-burgundy font-bold">
+                      {ceremony.title}
+                    </p>
+                  </div>
+
                   <div className="flex flex-wrap items-center justify-center gap-4 sm:gap-6">
                     <div className="text-center">
                       <p className="text-ink/70 text-xs sm:text-sm uppercase tracking-wider font-semibold mb-0.5">Giờ làm lễ</p>
-                      <p className="text-4xl sm:text-5xl font-serif text-burgundy font-bold">{data.ceremony.timeLabel}</p>
+                      <p className="text-4xl sm:text-5xl font-serif text-burgundy font-bold">{ceremony.timeLabel}</p>
                     </div>
                     <div className="w-px h-10 bg-gold/30 hidden sm:block" />
                     <div className="text-center">
                       <p className="text-ink/70 text-xs sm:text-sm uppercase tracking-wider font-semibold mb-0.5">Giờ nhập tiệc</p>
-                      <p className="text-4xl sm:text-5xl font-serif text-burgundy font-bold">{data.ceremony.receptionTimeLabel}</p>
+                      <p className="text-4xl sm:text-5xl font-serif text-burgundy font-bold">{ceremony.receptionTimeLabel}</p>
                     </div>
                   </div>
 
                   <div className="space-y-1">
                     <p className="text-3xl sm:text-4xl text-ink-dark font-serif font-bold tracking-wide">
-                      {data.ceremony.solarDateLabel}
+                      {ceremony.solarDateLabel}
                     </p>
                     <p className="text-xl text-ink font-semibold">
-                      {data.ceremony.lunarDateLabel}
+                      {ceremony.lunarDateLabel}
                     </p>
                   </div>
                 </div>
@@ -123,10 +168,10 @@ export function WeddingInfoSection({ data }: WeddingInfoSectionProps) {
                     Địa điểm
                   </p>
                   <p className="text-4xl text-ink-dark font-serif font-black tracking-tight mb-2 leading-tight">
-                    {data.ceremony.venueName}
+                    {ceremony.venueName}
                   </p>
                   <p className="text-xl text-ink font-bold max-w-[500px] mx-auto leading-relaxed">
-                    {data.ceremony.address}
+                    {ceremony.address}
                   </p>
                 </div>
               </div>
