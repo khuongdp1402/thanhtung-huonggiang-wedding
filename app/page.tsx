@@ -1,4 +1,3 @@
-import { Suspense } from "react";
 import { invitation } from "../lib/invitation";
 import { InvitationHeaderSection } from "../components/InvitationHeaderSection";
 import { WeddingInfoSection } from "../components/WeddingInfoSection";
@@ -11,33 +10,22 @@ import { FooterSection } from "../components/FooterSection";
 import { BackgroundMusic } from "../components/BackgroundMusic";
 import { ModeSwitcher } from "../components/ModeSwitcher";
 
-function PageContent() {
+// Force dynamic rendering for this page
+export const dynamic = 'force-dynamic';
+
+export default function HomePage() {
   return (
-    <>
+    <main className="bg-paper">
       <ModeSwitcher />
-      <Suspense fallback={null}>
-        <InvitationHeaderSection data={invitation} />
-      </Suspense>
+      <InvitationHeaderSection data={invitation} />
       <WeddingInfoSection data={invitation} />
       <CountdownSection data={invitation} />
-      <Suspense fallback={null}>
-        <QuoteSection data={invitation} />
-      </Suspense>
+      <QuoteSection data={invitation} />
       <GallerySection data={invitation} />
       <LocationSection data={invitation} />
       <WishesSection />
       <FooterSection data={invitation} />
       <BackgroundMusic />
-    </>
-  );
-}
-
-export default function HomePage() {
-  return (
-    <main className="bg-paper">
-      <Suspense fallback={<div className="min-h-screen bg-paper" />}>
-        <PageContent />
-      </Suspense>
     </main>
   );
 }
