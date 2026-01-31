@@ -18,26 +18,34 @@ export function ModeProvider({ children }: { children: ReactNode }) {
   const router = useRouter();
   const pathname = usePathname();
   
-  // Initialize mode from URL parameter or default to "bride"
+  // Initialize mode from URL parameter or default to "groom"
   const getInitialMode = (): WeddingMode => {
+    if (!searchParams) return "groom";
     const modeParam = searchParams.get("mode");
-    if (modeParam === "groom" || modeParam === "nhatrai") {
-      return "groom";
-    }
     if (modeParam === "bride" || modeParam === "nhagai") {
       return "bride";
     }
-    return "bride";
+    if (modeParam === "groom" || modeParam === "nhatrai") {
+      return "groom";
+    }
+    return "groom"; // Default to groom if no mode specified
   };
 
-  const [mode, setModeState] = useState<WeddingMode>(getInitialMode);
+  const [mode, setModeState] = useState<WeddingMode>("groom");
+
+  // Initialize mode on mount
+  useEffect(() => {
+    setModeState(getInitialMode());
+  }, []);
 
   // Update URL when mode changes
   const setMode = (newMode: WeddingMode) => {
     setModeState(newMode);
-    const params = new URLSearchParams(searchParams.toString());
-    params.set("mode", newMode);
-    router.replace(`${pathname}?${params.toString()}`, { scroll: false });
+    if (searchParams && router && pathname) {
+      const params = new URLSearchParams(searchParams.toString());
+      params.set("mode", newMode);
+      router.replace(`${pathname}?${params.toString()}`, { scroll: false });
+    }
   };
 
   const toggleMode = () => {
@@ -47,6 +55,7 @@ export function ModeProvider({ children }: { children: ReactNode }) {
 
   // Sync mode with URL parameter changes
   useEffect(() => {
+    if (!searchParams) return;
     const modeFromUrl = getInitialMode();
     if (modeFromUrl !== mode) {
       setModeState(modeFromUrl);
