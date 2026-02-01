@@ -194,7 +194,7 @@ export function WishesSection() {
                   </div>
 
                   <div className="flex flex-col sm:flex-row items-center justify-between gap-6 pt-4">
-                    <p className="text-xs text-ink/50 tracking-wider font-medium italic">Thông tin sẽ gửi đến Trang tính và Lưu trữ mãi mãi.</p>
+                    <p className="text-xs text-ink/50 tracking-wider font-medium italic">Thông tin sẽ gửi đến cô dâu chú rể Lưu trữ mãi mãi.</p>
 
                     <motion.button
                       type="button"
