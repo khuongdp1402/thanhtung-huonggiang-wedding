@@ -2,9 +2,10 @@
 
 import { motion, useScroll, useTransform, useSpring, AnimatePresence } from "framer-motion";
 import { useEffect, useState } from "react";
+import { useMode } from "@/lib/mode-context";
 
 const RIBBON_CONTENT = [
-    { id: "top", text: "Thanh Tùng • Hương Giang" },
+    { id: "top", text: { groom: "Thanh Tùng • Hương Giang", bride: "Hương Giang • Thanh Tùng" } },
     { id: "thong-tin", text: "Thứ Sáu • 13 • 02 • 2026" },
     { id: "countdown", text: "Hạnh phúc là có nhau" },
     { id: "anh", text: "Vị ngọt tình yêu" },
@@ -12,8 +13,39 @@ const RIBBON_CONTENT = [
 ];
 
 export function WeddingRibbon() {
-    const [activeText, setActiveText] = useState(RIBBON_CONTENT[0].text);
+    const { mode } = useMode();
+    const [activeText, setActiveText] = useState("");
     const { scrollYProgress } = useScroll();
+
+    // Helper to get text based on mode
+    const getText = (item: typeof RIBBON_CONTENT[0]) => {
+        if (typeof item.text === "string") return item.text;
+        return item.text[mode];
+    };
+
+    // Update active text when mode changes or on initial mount
+    useEffect(() => {
+        const handleScroll = () => {
+            let currentSectionText = getText(RIBBON_CONTENT[0]);
+
+            for (const item of RIBBON_CONTENT) {
+                const element = document.getElementById(item.id);
+                if (element) {
+                    const rect = element.getBoundingClientRect();
+                    // If the section is near the middle of the viewport
+                    if (rect.top <= window.innerHeight / 2 && rect.bottom >= window.innerHeight / 2) {
+                        currentSectionText = getText(item);
+                        break;
+                    }
+                }
+            }
+            setActiveText(currentSectionText);
+        };
+
+        handleScroll(); // Initial check
+        window.addEventListener("scroll", handleScroll);
+        return () => window.removeEventListener("scroll", handleScroll);
+    }, [mode]);
 
     // Parallax: lên khi scroll, nhưng cuối page hạ lại để không bị che phần trên (con dấu)
     const ribbonY = useTransform(scrollYProgress, [0, 0.5, 0.8, 1], [0, -85, -85, 0]);
