@@ -2,7 +2,7 @@
 
 import { motion, useScroll, useTransform, useSpring, AnimatePresence } from "framer-motion";
 import { useEffect, useState } from "react";
-import { useMode } from "@/lib/mode-context";
+import { useMode } from "../lib/mode-context";
 
 const RIBBON_CONTENT = [
     { id: "top", text: { groom: "Thanh Tùng • Hương Giang", bride: "Hương Giang • Thanh Tùng" } },
