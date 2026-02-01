@@ -2,9 +2,14 @@
 
 import { motion, useScroll, useTransform, useSpring, AnimatePresence } from "framer-motion";
 import { useEffect, useState } from "react";
-import { useMode } from "../lib/mode-context";
+import { useMode, type WeddingMode } from "../lib/mode-context";
 
-const RIBBON_CONTENT = [
+type RibbonContentItem = {
+    id: string;
+    text: string | Record<WeddingMode, string>;
+};
+
+const RIBBON_CONTENT: RibbonContentItem[] = [
     { id: "top", text: { groom: "Thanh Tùng • Hương Giang", bride: "Hương Giang • Thanh Tùng" } },
     { id: "thong-tin", text: "Thứ Sáu • 13 • 02 • 2026" },
     { id: "countdown", text: "Hạnh phúc là có nhau" },
@@ -18,9 +23,9 @@ export function WeddingRibbon() {
     const { scrollYProgress } = useScroll();
 
     // Helper to get text based on mode
-    const getText = (item: typeof RIBBON_CONTENT[0]) => {
+    const getText = (item: RibbonContentItem): string => {
         if (typeof item.text === "string") return item.text;
-        return item.text[mode];
+        return (item.text as Record<WeddingMode, string>)[mode];
     };
 
     // Update active text when mode changes or on initial mount
@@ -50,28 +55,6 @@ export function WeddingRibbon() {
     // Parallax: lên khi scroll, nhưng cuối page hạ lại để không bị che phần trên (con dấu)
     const ribbonY = useTransform(scrollYProgress, [0, 0.5, 0.8, 1], [0, -85, -85, 0]);
     const smoothY = useSpring(ribbonY, { stiffness: 50, damping: 20 });
-
-    useEffect(() => {
-        const handleScroll = () => {
-            let currentSection = RIBBON_CONTENT[0].text;
-
-            for (const item of RIBBON_CONTENT) {
-                const element = document.getElementById(item.id);
-                if (element) {
-                    const rect = element.getBoundingClientRect();
-                    // If the section is near the middle of the viewport
-                    if (rect.top <= window.innerHeight / 2 && rect.bottom >= window.innerHeight / 2) {
-                        currentSection = item.text;
-                        break;
-                    }
-                }
-            }
-            setActiveText(currentSection);
-        };
-
-        window.addEventListener("scroll", handleScroll);
-        return () => window.removeEventListener("scroll", handleScroll);
-    }, []);
 
     return (
         <div className="fixed left-4 sm:left-8 top-0 h-screen w-12 sm:w-16 z-50 pointer-events-none hidden md:flex items-center justify-center overflow-hidden">
