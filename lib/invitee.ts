@@ -6,7 +6,9 @@
 function decodeParam(value: string | null): string | null {
   if (!value || typeof value !== "string") return null;
   try {
-    return decodeURIComponent(value.replace(/\+/g, " ")).trim() || null;
+    // Decode URL parameter. Modern URL encoding uses %20 for space and %2B for +
+    // so we don't need to replace + with space anymore
+    return decodeURIComponent(value).trim() || null;
   } catch {
     return null;
   }

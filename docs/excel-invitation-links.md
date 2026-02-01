@@ -135,3 +135,22 @@ Kéo fill xuống cho các dòng tiếp theo (C3, C4, D3, D4, ...).
 | guest       | name, ten                | Khương, Hương    |
 
 Cách dùng trên web: `?salutation=Anh&guest=Khương` → Bìa thiệp: "Kính gửi: Anh Khương"; câu "Sự hiện diện của **Anh** là...".
+
+---
+
+## Lưu ý về ký tự đặc biệt
+
+Khi tên khách có ký tự đặc biệt (như dấu +, &, =, ...), **PHẢI dùng hàm `ENCODEURL()`** trong Excel để encode đúng:
+
+**Ví dụ:** Tên khách là "Hòa + nt"
+
+```excel
+=$E$1&"?salutation="&ENCODEURL(A2)&"&guest="&ENCODEURL(B2)&"&mode=groom"
+```
+
+Kết quả URL sẽ là: `?salutation=Bạn&guest=H%C3%B2a%20%2B%20nt&mode=groom`
+
+Trong đó:
+- `%20` = khoảng trắng
+- `%2B` = dấu cộng (+)
+- Khi hiển thị trên web sẽ ra đúng: "Bạn Hòa + nt"
