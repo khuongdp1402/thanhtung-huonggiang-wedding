@@ -38,15 +38,23 @@ export function WishesSection() {
       const response = await fetch(`${GOOGLE_SHEET_URL}?action=getWishes`);
       const data = await response.json();
       if (Array.isArray(data)) {
-        // Sort by createdAt descending (newest first)
-        const sorted = data.sort((a, b) => (b.createdAt || 0) - (a.createdAt || 0));
+        // Sort by createdAt descending (newest first) - reversed to show newest on top
+        const sorted = data.sort((a, b) => {
+          const timeA = a.createdAt || 0;
+          const timeB = b.createdAt || 0;
+          return timeB - timeA; // Newest first (descending)
+        });
         setWishes(sorted);
       }
     } catch (error) {
       console.error("Error fetching wishes:", error);
       // Fallback to local storage if fetch fails
       const localWishes = safeParse(localStorage.getItem(storageKey));
-      const sorted = localWishes.sort((a, b) => (b.createdAt || 0) - (a.createdAt || 0));
+      const sorted = localWishes.sort((a, b) => {
+        const timeA = a.createdAt || 0;
+        const timeB = b.createdAt || 0;
+        return timeB - timeA; // Newest first (descending)
+      });
       setWishes(sorted);
     }
   }
